@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="exam" class="quiz03.Exam">
+		<constructor-arg>
+			<list>
+				<value>50</value>
+				<value>60</value>
+				<value>70</value>
+				<value>80</value>
+				<value>90</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="student" class="quiz03.Student">
+		<property name="name" value="david"/>
+		<property name="age" value="16"/>
+		<property name="home">
+			<map>
+				<entry key="address" value="seoul"/>
+				<entry key="phone" value="02-555-5555"/>
+			</map>
+		</property>
+		<property name="exam" ref="exam"/>
+	</bean>
+
+</beans>
