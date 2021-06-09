@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		지금부터 아래 Bean을 생성한다.
+	-->
+
+	<bean id="setBean" class="ex03_xml.SetBean">
+		<property name="set">
+			<set>
+				<value>자바</value>
+				<value>자바</value>
+				<value>JSP</value>
+				<value>JSP</value>
+				<value>SPRING</value>
+				<value>SPRING</value>
+			</set>
+		</property>
+	</bean>
+
+</beans>
