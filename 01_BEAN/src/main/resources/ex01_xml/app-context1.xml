@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+		spring bean configuration file
+		: 안녕. 나는 bean(객체)을 만들어 주는 XML이야.
+	-->
+	<!-- 
+		1. 디폴트 생성자
+		<bean id="객체명" class="클래스명"/> 
+		<bean id="객체명" class="클래스명"></bean>
+		 
+		2-1. 디폴트 생성자 + setter
+		<bean id="객체명" class="클래스명">
+			<property name="필드명">
+				<value>값</value>
+			</property>
+			<property name="필드명">
+				<ref bean="객체명"/>
+			</property>
+		</bean>
+		
+		2-2. 디폴트 생성자 + setter
+		<bean id="객체명" class="클래스명">
+			<property name="필드명" value="값"/>
+			<property name="필드명" ref="객체명"/>
+		</bean>
+		
+		3-1. 필드 생성자
+		<bean id="객체명" class="클래스명">
+			<constructor-arg>
+				<value>1번째인수</value>
+			</constructor-arg>
+			<constructor-arg>
+				<value>2번째인수</value>
+			</constructor-arg>
+			<constructor-arg>
+				<ref bean="객체명"/>
+			</constructor-arg>
+		</bean>
+		
+		3-2. 필드 생성자
+		<bean id="engineerCalculator4" class="ex01_xml.EngineerCalculator">
+			<constructor-arg name="필드명" value="값"/>
+			<constructor-arg name="필드명" value="값"/>
+			<constructor-arg name="필드명" ref="객체명"/>
+		</bean>
+	-->
+	
+	<!-- 1. 디폴트 생성자 -->
+	<bean id="calculator1" class="ex01_xml.Calculator"/>
+	<bean id="calculator2" class="ex01_xml.Calculator"/>
+	<bean id="calculator3" class="ex01_xml.Calculator"/>
+	<bean id="calculator4" class="ex01_xml.Calculator"/>
+
+	<!-- 2-1. 디폴트 생성자 + setter -->
+	<bean id="engineerCalculator1" class="ex01_xml.EngineerCalculator">
+		<property name="num1">
+			<value>10</value>
+		</property>
+		<property name="num2">
+			<value>3</value>
+		</property>
+		<property name="calculator">
+			<ref bean="calculator1"/>
+		</property>
+	</bean>
+	
+	<!-- 2-2. 디폴트 생성자 + setter -->
+	<bean id="engineerCalculator2" class="ex01_xml.EngineerCalculator">
+		<property name="num1" value="21"/>
+		<property name="num2" value="5"/>
+		<property name="calculator" ref="calculator2"></property>
+	</bean>
+	
+	<!-- 3-1. 필드 생성자 -->
+	<bean id="engineerCalculator3" class="ex01_xml.EngineerCalculator">
+		<constructor-arg>
+			<value>23</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>7</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="calculator3"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 3-2. 필드 생성자 -->
+	<bean id="engineerCalculator4" class="ex01_xml.EngineerCalculator">
+		<!-- name을 제외하고 순서대로 작성해도 무관하다. -->
+		<constructor-arg name="num1" value="11"/>
+		<constructor-arg name="num2" value="3"/>
+		<constructor-arg name="calculator" ref="calculator4"/>
+	</bean>
+	
+</beans>
