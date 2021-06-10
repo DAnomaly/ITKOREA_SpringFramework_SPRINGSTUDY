@@ -26,6 +26,11 @@ public class SpringMainClass {
 		Book b2 = ctx2.getBean("bk",Book.class);
 		b2.info();
 		
+		Computer c1 = ctx2.getBean("com",Computer.class);
+		Computer c2 = ctx2.getBean("com",Computer.class);
+		
+		System.out.println(c1 == c2);
+		
 		ctx2.close();
 
 	}
