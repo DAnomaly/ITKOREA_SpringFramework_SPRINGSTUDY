@@ -1,5 +1,5 @@
 # ex02_xml
- 참고: ../resources/ex01_xml/app-context2.xml  
+ 참고: ../resources/ex02_xml/app-context2.xml  
  * p태그 기능을 추가하여 bean객체를 생성
 
 ## p 태그를 이용한 bean객체 생성

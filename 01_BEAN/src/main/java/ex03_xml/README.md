@@ -1,8 +1,8 @@
 # ex03_xml
  참고:   
- >../resources/ex01_xml/app-context3-1.xml  
- >../resources/ex01_xml/app-context3-2.xml  
- >../resources/ex01_xml/app-context3-3.xml  
+ >../resources/ex03_xml/app-context3-1.xml  
+ >../resources/ex03_xml/app-context3-2.xml  
+ >../resources/ex03_xml/app-context3-3.xml  
  * List - property
  * Set - property
  * Map - property

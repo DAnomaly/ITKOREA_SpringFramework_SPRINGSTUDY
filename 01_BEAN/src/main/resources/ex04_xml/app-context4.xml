@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 
+		지금부터 아래 Bean을 생성한다.
+	-->
+	<bean id="calculator" class="ex04_xml.Calculator"/>
+	
+	<bean id="bmiCalculator" class="ex04_xml.BMICalculator">
+		<constructor-arg value="20"/>
+		<constructor-arg value="25"/>
+		<constructor-arg value="30"/>
+		<constructor-arg ref="calculator"/>
+	</bean>
+	
+	<bean id="member" class="ex04_xml.Member">
+		<property name="name" value="bread"/>
+		<property name="height" value="152"/>
+		<property name="weight" value="47"/>
+		<property name="bmiCalculator" ref="bmiCalculator"/>
+		<property name="services">
+			<list>
+				<value>개인PT</value>
+				<value>스피닝</value>
+				<value>요가</value>
+			</list>
+		</property>
+	</bean>
+</beans>
