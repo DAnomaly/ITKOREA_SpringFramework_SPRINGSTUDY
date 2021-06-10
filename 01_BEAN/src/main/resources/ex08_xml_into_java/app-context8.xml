@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Gun -->
+	<bean id="gun2" class="ex08_xml_into_java.Gun">
+		<property name="model">
+			<value>M16</value>
+		</property>
+		<property name="bullet">
+			<value>20</value>
+		</property>
+	</bean>
+	
+	<!-- Soldier -->
+	<bean id="soldier2" class="ex08_xml_into_java.Soldier">
+		<property name="name">
+			<value>제임스</value>
+		</property>
+		<property name="gun">
+			<ref bean="gun2"/>
+		</property>
+		<property name="army">
+			<map>
+				<entry key="부대명" value="필승부대"/>
+				<entry key="사단장" value="쓰리스타"/>
+				<entry key="부대위치" value="강원도 고성군"/>
+			</map>
+		</property>
+	</bean>
+	
+</beans>

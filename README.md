@@ -15,3 +15,5 @@
 * bean의 생성 (Ver.java > List, Set, Map)
 ### [ex07_java_into_xml](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex07_java_into_xml)
 * JavaBean을 XmlBean에 추가하기
+### [ex08_xml_into_java](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex08_xml_into_java)
+* XmlBean을 JavaBean에 추가하기
