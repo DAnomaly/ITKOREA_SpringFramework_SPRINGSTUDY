@@ -17,3 +17,7 @@
 * JavaBean을 XmlBean에 추가하기
 ### [ex08_xml_into_java](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex08_xml_into_java)
 * XmlBean을 JavaBean에 추가하기
+### [ex09_scope](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex09_scope)
+* scope 속성
+### [ex10_component](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex10_component)
+* component에 대해
