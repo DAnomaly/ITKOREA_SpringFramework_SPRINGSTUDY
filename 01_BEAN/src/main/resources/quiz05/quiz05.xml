@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="husband1" class="quiz05.Person">
+		<property name="name" value='James'/>
+		<property name="gender" value="남"/>
+	</bean>
+	
+	<bean id="wife1" class="quiz05.Person">
+		<property name="name" value='Alice'/>
+		<property name="gender" value="여"/>
+	</bean>
+	
+	<bean id="honeyMoon1" class="quiz05.HoneyMoon">
+		<property name="city" value="Yorktown"/>
+		<property name="husband" ref="husband1"/>
+		<property name="wife" ref="wife1"/>
+	</bean>
+		
+</beans>
