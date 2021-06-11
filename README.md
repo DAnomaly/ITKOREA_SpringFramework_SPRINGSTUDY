@@ -22,7 +22,7 @@
 ### [ex10_component](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex10_component)
 * component에 대해
 ## 02_DI
-### ex01_inject
+### [ex01_inject](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/02_DI/src/main/java/ex01_inject)
 * @Inject에 대해서
-### ex02_resource
+### [ex02_resource](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/02_DI/src/main/java/ex02_resource)
 * @Resource에 대해서
