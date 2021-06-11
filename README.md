@@ -22,7 +22,12 @@
 ### [ex10_component](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/01_BEAN/src/main/java/ex10_component)
 * component에 대해
 ## 02_DI
+* 환경: Simple Spring Maven
 ### [ex01_inject](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/02_DI/src/main/java/ex01_inject)
 * @Inject에 대해서
+* @Named에 대해서
 ### [ex02_resource](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/02_DI/src/main/java/ex02_resource)
 * @Resource에 대해서
+### [ex03_autowired](https://github.com/DAnomaly/ITKOREA_SpringFramework_SPRINGSTUDY/tree/main/02_DI/src/main/java/ex03_autowired)
+* @Autowired에 대해서
+* @Qualifier에 대해서
