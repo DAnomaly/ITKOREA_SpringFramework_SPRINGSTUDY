@@ -36,6 +36,6 @@ public class MyController1 {
 		return "folder01/view02";
 	}
 	
-	// 앞으로는 매핑 값을 작성할 때 슬래스(/)를 넣지 않겠다.
+	// 앞으로는 매핑 값을 작성할 때 슬래시(/)를 넣지 않겠다.
 	
 }

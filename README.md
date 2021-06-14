@@ -39,3 +39,7 @@
 ## 04_MVC_BEAN
 * 환경: Spring MVC Project
 * Spring MVC Project에서 Bean 사용
+
+## 05_MVC_REQUEST
+* 환경: Spring MVC Project
+* @RequestMapping 활용
