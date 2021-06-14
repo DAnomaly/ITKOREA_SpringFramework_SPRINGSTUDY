@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>view01</title>
+	<title>view02</title>
 	<style>
 		body {
 			margin: 0 auto;
@@ -15,8 +15,8 @@
 	</style>
 </head>
 <body>
-	<h1>view01.jsp</h1>
-	<p>이름: ${name}</p>
-	<p>나이: ${age}</p>
+	<h1>view02.jsp</h1>
+	<p>이름: ${map.name}</p>
+	<p>나이: ${map.age}</p>
 </body>
 </html>

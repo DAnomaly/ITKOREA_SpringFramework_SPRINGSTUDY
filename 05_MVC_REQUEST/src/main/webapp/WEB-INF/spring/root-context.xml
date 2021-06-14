@@ -5,4 +5,28 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+	<bean id="alice" class="com.koreait.mvc03.dto.Person">
+		<qualifier value="alice"/>
+		<property name="name" value="앨리스"/>
+		<property name="age" value="20"/>
+		<property name="hobbies">
+			<list>
+				<value>캠핑</value>
+				<value>홈카페</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="delta" class="com.koreait.mvc03.dto.Person">
+		<qualifier value="delta"/>
+		<property name="name" value="델타"/>
+		<property name="age" value="25"/>
+		<property name="hobbies">
+			<list>
+				<value>SNS</value>
+				<value>잠</value>
+			</list>
+		</property>
+	</bean>
+		
 </beans>
