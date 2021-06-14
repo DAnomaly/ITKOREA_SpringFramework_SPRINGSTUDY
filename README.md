@@ -35,3 +35,7 @@
 
 ## 03_MVC_OVERVIEW
 * 환경: Spring MVC Project
+
+## 04_MVC_BEAN
+* 환경: Spring MVC Project
+* Spring MVC Project에서 Bean 사용
