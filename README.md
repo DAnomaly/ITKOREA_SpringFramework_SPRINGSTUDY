@@ -43,3 +43,4 @@
 ## 05_MVC_REQUEST
 * 환경: Spring MVC Project
 * @RequestMapping 활용
+* model.addAttribute(name, value)
