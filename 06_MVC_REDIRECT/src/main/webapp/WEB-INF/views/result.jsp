@@ -5,18 +5,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>view</title>
-	<style>
-		body {
-			margin: 0 auto;
-			width: 680px;
-			text-align: center;
-		}
-	</style>
+	<title>이름 나이</title>
 </head>
 <body>
-	<h1>view03.jsp</h1>
-	<p>이름: ${name}</p>
-	<p>나이: ${age}</p>
+	<ul>
+	</ul>
 </body>
 </html>

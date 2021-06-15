@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +22,7 @@ public class MyController6 {
 		1. HttpServletRequest request
 		2. @RequestParam
 		3. DTO를 사용
-		
+		4. @ModelAttribute
 	 */
 	
 	// 1. request 이용하기
@@ -85,5 +86,18 @@ public class MyController6 {
 		
 		return "folder05/view04";
 	}
+
+	// 4-1. @ModelAttribute
+	@RequestMapping("f5/v05")
+	public String e(@ModelAttribute(value="name") String name,
+			@ModelAttribute(value="age") int age) {
+		 	// 파라미터 name을 String name에 저장한 뒤 model에 저장한다.
+		return "folder05/view05";
+	}
 	
+	// 4-2. @ModelAttribute
+	@RequestMapping("f5/v06")
+	public String f(@ModelAttribute("person") Person person) {
+		return "folder05/view06";
+	}
 }

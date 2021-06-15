@@ -35,5 +35,14 @@
 	<a href="/mvc03/f5/v02?name=앨리스&age=25">folder05/view02.jsp로 이동</a><br/>
 	<a href="/mvc03/f5/v03">folder05/view03.jsp로 이동</a><br/>
 	<a href="/mvc03/f5/v04?name=앨리스&age=25&hobbies=음악감상&hobbies=수면">folder05/view04.jsp로 이동</a><br/>
+	<a href="/mvc03/f5/v05?name=갤럭시&age=8">folder05/view05.jsp로 이동</a><br/>
+	<a href="/mvc03/f5/v06?name=갤럭시&age=8">folder05/view06.jsp로 이동</a><br/>
+	<hr/>
+	<a href="/mvc03/quiz/v1?title=공지사항&hit=5">request방식</a><br/>
+	<a href="/mvc03/quiz/v2?title=공지사항&hit=5">@RequestParam방식</a><br/>
+	<a href="/mvc03/quiz/v3?title=공지사항&hit=5">DTO방식</a><br/>
+	<a href="/mvc03/quiz/v4?title=공지사항&hit=5">@ModelAttribute방식</a><br/>
+	<hr/>
+	<a href="/mvc03/loginPage.do">로그인 하러 가기</a><br/>
 </body>
 </html>

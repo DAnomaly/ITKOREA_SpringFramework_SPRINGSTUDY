@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>view</title>
+	<title>로그인 결과</title>
 	<style>
 		body {
 			margin: 0 auto;
@@ -15,8 +15,8 @@
 	</style>
 </head>
 <body>
-	<h1>view03.jsp</h1>
-	<p>이름: ${name}</p>
-	<p>나이: ${age}</p>
+	<h1>로그인 결과</h1>
+	아이디: ${id}<br>
+	비밀번호: ${pw}<br>
 </body>
 </html>

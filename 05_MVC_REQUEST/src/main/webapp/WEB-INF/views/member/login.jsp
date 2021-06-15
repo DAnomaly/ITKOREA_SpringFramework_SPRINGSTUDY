@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>view</title>
+	<title>로그인</title>
 	<style>
 		body {
 			margin: 0 auto;
@@ -15,8 +15,16 @@
 	</style>
 </head>
 <body>
-	<h1>view03.jsp</h1>
-	<p>이름: ${name}</p>
-	<p>나이: ${age}</p>
+	<h3>로그인</h3>
+	<form action="/mvc03/login.do" method="post">
+		<span>아이디</span>
+		<input type="text" name="id"/>
+		<br>
+		<span>비밀번호</span>
+		<input type="password" name="pw"/>
+		<br>
+		<input type="submit" value="로그인"/>
+	</form>
+
 </body>
 </html>

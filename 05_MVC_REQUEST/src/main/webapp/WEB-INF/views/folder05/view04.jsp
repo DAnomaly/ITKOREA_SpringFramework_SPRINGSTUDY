@@ -15,7 +15,7 @@
 	</style>
 </head>
 <body>
-	<h1>view03.jsp</h1>
+	<h1>view04.jsp</h1>
 	<p>이름: ${person.name}</p>
 	<p>나이: ${person.age}</p>
 	<p>취미: ${person.hobbies}</p>
