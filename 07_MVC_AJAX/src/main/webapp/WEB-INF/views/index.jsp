@@ -22,7 +22,7 @@
 				data: 'name=' + $('#name').val() + "&age=" + $('#age').val(),
 				dataType: 'text',
 				success:
-					function(responseData) { // responseData에 return p; 로 반환한 json 데이터가 반환된다.
+					function(responseData) { 
 						console.log(responseData);
 					},
 				error:
@@ -38,7 +38,7 @@
 				data: 'name=' + $('#name').val() + "&age=" + $('#age').val(),
 				dataType: 'json',
 				success:
-					function(responseData) { // responseData에 return p; 로 반환한 json 데이터가 반환된다.
+					function(responseData) {
 						console.log(responseData);
 					},
 				error:
@@ -48,13 +48,19 @@
 			})
 		}
 		function fn3() {
+			var obj = {
+				"name": $('#name').val(),
+				"age": $('#age').val()
+			};
+			
 			$.ajax({
 				url: 'v03',
-				type: 'GET',
-				data: 'name=' + $('#name').val() + "&age=" + $('#age').val(),
+				type: 'post',
+				data: JSON.stringify(obj),
+				contentType: 'application/json',
 				dataType: 'json',
 				success:
-					function(responseData) { // responseData에 return p; 로 반환한 json 데이터가 반환된다.
+					function(responseData) { 
 						console.log(responseData);
 					},
 				error:
@@ -62,6 +68,11 @@
 						console.log(xhr.responseText + ", " + text + "," + error);
 					}
 			})
+			
+			/* 
+				Object를 json 타입으로 보내고 싶을 땐
+				JSON.stringify() 메소드를 이용하여 'Object -> json'으로 반환한 뒤에 전송해 주자.
+			*/
 		}
 	</script>
 </head>

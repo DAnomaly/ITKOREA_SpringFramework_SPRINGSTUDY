@@ -3,10 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.koreait</groupId>
-	<artifactId>mvc05</artifactId>
-	<name>07_MVC_AJAX</name>
+	<artifactId>board01</artifactId>
+	<name>08_BOARD</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<!-- SRPING : 5.1.4.RELEASE > properties -->
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.1.4.RELEASE</org.springframework-version>
@@ -91,14 +92,7 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		<!--
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
+		<!-- SRPING : 5.1.4.RELEASE > javax.servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -116,23 +110,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-
+	
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
-		</dependency>    
-		
-		<!-- mvnrepository -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.4</version>
-		</dependency>
-		    
+		</dependency>        
 	</dependencies>
     <build>
         <plugins>
@@ -150,6 +135,7 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
+            <!-- SRPING : 5.1.4.RELEASE > org.apache.maven.plugins -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
