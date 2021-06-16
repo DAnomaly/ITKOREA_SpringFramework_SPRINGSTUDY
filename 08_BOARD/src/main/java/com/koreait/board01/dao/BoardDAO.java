@@ -13,8 +13,20 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.koreait.board01.command.InsertBoardCommand;
+import com.koreait.board01.command.ListBoardCommand;
+import com.koreait.board01.command.SelectBoardCommand;
+import com.koreait.board01.command.UpdateBoardCommand;
 import com.koreait.board01.dto.Board;
 
+/**
+ * DB 연결 및 SQL실행<br>
+ * 
+ * TABLE : BOARD
+ * 
+ * @author DAnomaly
+ *
+ */
 public class BoardDAO {
 
 	// field
@@ -70,6 +82,7 @@ public class BoardDAO {
 	/**
 	 * DB의 board 테이블의 개수 확인
 	 * 
+	 * @see ListBoardCommand#execute(org.springframework.ui.Model)
 	 * @return board 데이터의 수
 	 */
 	public int boardCount() {
@@ -92,6 +105,7 @@ public class BoardDAO {
 	/**
 	 * DB의 Board 태이블의 모든 데이터를 가져와 List에 담고 반환
 	 * 
+	 * @see ListBoardCommand#execute(org.springframework.ui.Model)
 	 * @param map startRecord, endRecord가 존재하는 map
 	 * @return list
 	 */
@@ -130,6 +144,7 @@ public class BoardDAO {
 	/**
 	 * 새글 작성 메소드
 	 * 
+	 * @see InsertBoardCommand#execute(org.springframework.ui.Model)
 	 * @param board
 	 * @return 결과값 ( 변화한 row의 값 )
 	 */
@@ -155,6 +170,7 @@ public class BoardDAO {
 	/**
 	 * NO를 통해 DB에서 개시글을 받아옵니다.
 	 * 
+	 * @see SelectBoardCommand#execute(org.springframework.ui.Model)
 	 * @param no
 	 * @return Board 데이터
 	 */
@@ -183,6 +199,11 @@ public class BoardDAO {
 		return board;
 	}
 	
+	/**
+	 * DB : 개시글 수정
+	 * @see UpdateBoardCommand#execute(org.springframework.ui.Model)
+	 * @param board
+	 */
 	public void updateBoard(Board board) {
 		try {
 			con = dataSource.getConnection();
