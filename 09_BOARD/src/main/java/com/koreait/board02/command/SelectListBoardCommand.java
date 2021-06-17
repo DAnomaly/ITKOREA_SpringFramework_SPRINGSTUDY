@@ -11,16 +11,16 @@ import com.koreait.board02.dto.Board;
 
 @Component
 public class SelectListBoardCommand implements BoardCommand {
-	
+
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Override
 	public boolean execute(Model model) {
-		
+
 		List<Board> list = boardDAO.selectListBoard();
-		model.addAttribute("list",list);
-		
+		model.addAttribute("list", list);
+
 		return true;
 	}
 

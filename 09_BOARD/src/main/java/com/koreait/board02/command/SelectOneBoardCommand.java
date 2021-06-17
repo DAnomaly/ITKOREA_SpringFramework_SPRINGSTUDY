@@ -12,13 +12,13 @@ public class SelectOneBoardCommand implements BoardCommand {
 
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Override
 	public boolean execute(Model model) {
-		
-		long no = (Long)model.asMap().get("no");
+
+		long no = (Long) model.asMap().get("no");
 		Board board = boardDAO.selectOneBoard(no);
-		if(board == null) {
+		if (board == null) {
 			return false;
 		} else {
 			model.addAttribute(board);

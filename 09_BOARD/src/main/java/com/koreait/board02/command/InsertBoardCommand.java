@@ -12,13 +12,13 @@ public class InsertBoardCommand implements BoardCommand {
 
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Override
 	public boolean execute(Model model) {
-		
-		Board board = (Board)model.asMap().get("board");
+
+		Board board = (Board) model.asMap().get("board");
 		int result = boardDAO.insertBoard(board);
-		if(result > 0)
+		if (result > 0)
 			return true;
 		else
 			return false;

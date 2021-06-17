@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<!--	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe" />
@@ -15,8 +15,7 @@
 	</bean>
 	
 	<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
-		<qualifier value="template"/>
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-		
+	-->
 </beans>
