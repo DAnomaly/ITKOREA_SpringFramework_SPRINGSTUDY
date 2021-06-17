@@ -220,4 +220,23 @@ public class BoardDAO {
 		}
 	}
 	
+	/**
+	 * DB : 개시글 삭제
+	 * 
+	 * @param no 개시글 번호
+	 */
+	public void deleteBoard(long no) {
+		try {
+			
+			con = dataSource.getConnection();
+			sql = "DELETE FROM BOARD WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(con,ps,null);
+		}
+	}
 }

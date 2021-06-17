@@ -5,4 +5,13 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+	<!-- command를 Bean으로 등록해 둔다. -->
+	<!-- 
+	<bean class="com.koreait.board01.command.DeleteBoardCommand" id="deleteBoardCommand"/>
+	<bean class="com.koreait.board01.command.InsertBoardCommand" id="insertBoardCommand"/>
+	<bean class="com.koreait.board01.command.ListBoardCommand" id="listBoardCommand"/>
+	<bean class="com.koreait.board01.command.SelectBoardCommand" id="selectBoardCommand"/>
+	<bean class="com.koreait.board01.command.UpdateBoardCommand" id="updateBoardCommand"/>
+	 -->
+		
 </beans>

@@ -37,6 +37,7 @@
 		<input type="hidden" name="no" value="${board.no}" id="no"/>
 		<input type="button" value="뒤로가기" id="back_btn"/>
 		<input type="button" value="수정" id="edit_btn"/>
+		<input type="button" value="삭제" id="del_btn"/>
 	</div>
 </body>
 </html>
