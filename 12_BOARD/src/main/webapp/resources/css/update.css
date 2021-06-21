@@ -1,0 +1,46 @@
+@charset "UTF-8";
+.width-800 {
+	margin: 0 auto;
+	width: 800px;
+}
+table {
+	box-sizing: border-box;
+	border-collapse: collapse;
+}
+table tr td {
+	box-sizing: border-box;
+	border: 2px solid #FFFFFF;
+	padding: 5px 10px;
+	margin: 5px;
+}
+table tr td:first-of-type {
+	border-radius: 10px;
+	text-align: center;
+	background-color: #2E64FE;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+p {
+	padding: 5px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #2E64FE;
+	color: #FFFFFF;
+}
+textarea {
+	box-sizing: border-box;
+	width: 800px;
+	height: 400px; 
+	resize: vertical;
+}
+.footer {
+	padding: 5px;
+	text-align: right;
+}
+.footer input {
+	border: none;
+	outline: none;
+	background-color: #2E64FE;
+	cursor: pointer;
+	border-radius: 8px;
+}

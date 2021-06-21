@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 
+	참고. JSP에서 처리한 방법
+	<mapper namespace="com.koreait.board03.dao.board"> mapper 자신
+
+	</mapper>
+-->
+
+<!-- mapper namespace="[DAO 인터페이스(패키지주소 포함)]" -->
+
+<mapper namespace="com.koreait.board03.dao.BoardDAO">
+
+	<!-- [BoardDAO] method == [board.xml] mapper id -->
+	<select id="selectBoardList" resultType="com.koreait.board03.dto.Board">
+		SELECT NO, WRITER, TITLE, CONTENT, POSTDATE 
+		  FROM BOARD 
+		 ORDER BY NO DESC
+	</select>
+
+	<select id="selectBoardByNo" parameterType="long" resultType="com.koreait.board03.dto.Board">
+		SELECT NO, WRITER, TITLE, CONTENT, POSTDATE
+		  FROM BOARD
+		 WHERE NO = #{no}
+	</select>
+
+	<insert id="insertBoard" parameterType="com.koreait.board03.dto.Board">
+		INSERT INTO BOARD VALUES (BOARD_SEQ.NEXTVAL, #{writer}, #{title}, #{content}, SYSDATE)
+	</insert>
+	
+	<insert id="insertBoard2" parameterType="String">
+		INSERT INTO BOARD VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE)
+	</insert>
+	
+	<update id="updateBoard" parameterType="com.koreait.board03.dto.Board">
+		UPDATE BOARD
+		   SET TITLE = #{title}
+		     , CONTENT = #{content}
+		 WHERE NO = #{no}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="long">
+		DELETE FROM BOARD
+		 WHERE NO = #{no}
+	</delete>
+</mapper>
