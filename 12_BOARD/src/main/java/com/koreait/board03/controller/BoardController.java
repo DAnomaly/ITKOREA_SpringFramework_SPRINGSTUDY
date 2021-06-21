@@ -1,9 +1,10 @@
-package com.koreait.board03.contorller;
+package com.koreait.board03.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import com.koreait.board03.command.InsertBoardCommand;
 import com.koreait.board03.command.SelectBoardListCommand;
 import com.koreait.board03.command.SelectBoardOneCommand;
 import com.koreait.board03.command.UpdateBoardCommand;
+import com.koreait.board03.config.BeanConfiguration;
 import com.koreait.board03.dto.Board;
 
 @Controller
@@ -22,19 +24,44 @@ public class BoardController {
 	
 	// field
 	// private SqlSessionTemplate sqlSession;
-	@Autowired
 	private SqlSession sqlSession; // SqlSessionTemplate클래스는 SqlSession인터페이스를 구현하고 있으므로  @Autowired 할 수 있다.
 	// commands
+	private SelectBoardListCommand selectBoardListCommand;
+	private SelectBoardOneCommand selectBoardOneCommand;
+	private InsertBoardCommand insertBoardCommand;
+	private UpdateBoardCommand updateBoardCommand;
+	private DeleteBoardCommand deleteBoardCommand;
+
+	AbstractApplicationContext ctx = new AnnotationConfigApplicationContext(BeanConfiguration.class);
+	
+	// constructor
+	/*
 	@Autowired
-	SelectBoardListCommand selectBoardListCommand;
-	@Autowired
-	SelectBoardOneCommand selectBoardOneCommand;
-	@Autowired
-	InsertBoardCommand insertBoardCommand;
-	@Autowired
-	UpdateBoardCommand updateBoardCommand;
-	@Autowired
-	DeleteBoardCommand deleteBoardCommand;
+	public BoardController(
+			SqlSession sqlSession, 
+			SelectBoardListCommand selectBoardListCommand,
+			SelectBoardOneCommand selectBoardOneCommand, 
+			InsertBoardCommand insertBoardCommand,
+			UpdateBoardCommand updateBoardCommand, 
+			DeleteBoardCommand deleteBoardCommand) {
+		super();
+		this.sqlSession = sqlSession;
+		this.selectBoardListCommand = selectBoardListCommand;
+		this.selectBoardOneCommand = selectBoardOneCommand;
+		this.insertBoardCommand = insertBoardCommand;
+		this.updateBoardCommand = updateBoardCommand;
+		this.deleteBoardCommand = deleteBoardCommand;
+	}
+	*/
+	public BoardController() {
+		sqlSession = ctx.getBean("sqlSession",SqlSession.class);
+		selectBoardListCommand = ctx.getBean("selectBoardListCommand",SelectBoardListCommand.class);
+		selectBoardOneCommand = ctx.getBean("selectBoardOneCommand",SelectBoardOneCommand.class);
+		insertBoardCommand = ctx.getBean("insertBoardCommand",InsertBoardCommand.class);
+		updateBoardCommand = ctx.getBean("updateBoardCommand",UpdateBoardCommand.class);
+		deleteBoardCommand = ctx.getBean("deleteBoardCommand",DeleteBoardCommand.class);
+	}
+	
 	
 	@RequestMapping(value={"/","index.do"})
 	public String index() {

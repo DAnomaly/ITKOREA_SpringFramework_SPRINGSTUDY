@@ -4,11 +4,17 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-// @Configuration
+import com.koreait.board03.command.DeleteBoardCommand;
+import com.koreait.board03.command.InsertBoardCommand;
+import com.koreait.board03.command.SelectBoardListCommand;
+import com.koreait.board03.command.SelectBoardOneCommand;
+import com.koreait.board03.command.UpdateBoardCommand;
+
+@Configuration
 public class BeanConfiguration {
 
 	@Bean
@@ -22,24 +28,38 @@ public class BeanConfiguration {
 	}
 	
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactory() {
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		Resource[] resources = new Resource[1];
-		resources[0] = new ClassPathResource("com/koreait/board03/dao/*.xml");
-		sqlSessionFactory.setMapperLocations(resources);
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/board03/dao/*.xml"));
 		sqlSessionFactory.setDataSource(dataSource());
-		return sqlSessionFactory;
+		return sqlSessionFactory.getObject();
 	}
 	
 	@Bean
-	public SqlSessionTemplate sqlSession() {
-		SqlSessionFactory sqlSessionFactory = null;
-		try {
-			sqlSessionFactory = sqlSessionFactory().getObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new SqlSessionTemplate(sqlSessionFactory);
+	public SqlSessionTemplate sqlSession() throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory());
+	}
+	
+	/* COMMAND */
+	@Bean
+	public SelectBoardListCommand selectBoardListCommand() {
+		return new SelectBoardListCommand();
+	}
+	@Bean
+	public SelectBoardOneCommand selectBoardOneCommand() {
+		return new SelectBoardOneCommand();
+	}
+	@Bean
+	public UpdateBoardCommand updateBoardCommand() {
+		return new UpdateBoardCommand();
+	}
+	@Bean
+	public InsertBoardCommand insertBoardCommand() {
+		return new InsertBoardCommand();
+	}
+	@Bean
+	public DeleteBoardCommand deleteBoardCommand() {
+		return new DeleteBoardCommand();
 	}
 	
 }

@@ -43,7 +43,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="deleteBoard" parameterType="long">
-		DELETE FROM BOARD
+		DELETE 
+		  FROM BOARD
 		 WHERE NO = #{no}
 	</delete>
 </mapper>

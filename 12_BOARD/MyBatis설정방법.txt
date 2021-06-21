@@ -102,22 +102,16 @@ MyBatis을 활용한 간단게시판 작성
 		dataSource.setPassword("1111");
 		return dataSource;
 	}
+	
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactory() {
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		Resource[] resources = new Resource[1];
-		resources[0] = new ClassPathResource("com/koreait/board03/dao/*.xml");
-		sqlSessionFactory.setMapperLocations(resources);
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/board03/dao/*.xml"));
 		sqlSessionFactory.setDataSource(dataSource());
-		return sqlSessionFactory;
+		return sqlSessionFactory.getObject();
 	}
+	
 	@Bean
-	public SqlSessionTemplate sqlSession() {
-		SqlSessionFactory sqlSessionFactory = null;
-		try {
-			sqlSessionFactory = sqlSessionFactory().getObject();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new SqlSessionTemplate(sqlSessionFactory);
+	public SqlSessionTemplate sqlSession() throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory());
 	}
