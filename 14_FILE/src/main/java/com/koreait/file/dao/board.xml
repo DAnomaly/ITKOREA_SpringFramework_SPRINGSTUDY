@@ -17,18 +17,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO BOARD VALUES (BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, SYSDATE)
 	</insert>
 	
-	<update id="updateBoard" parameterType="com.koreait.file.dto.Board">
+	<update id="updateBoard">
 		UPDATE BOARD
-		   SET TITLE = #{title}
-		     , CONTENT = #{content}
-		     , FILENAME = #{filename}
-		 WHERE NO = #{no}
+		   SET TITLE = #{param1}
+		     , CONTENT = #{param2}
+		     , FILENAME = #{param3}
+		 WHERE NO = #{param4}
 	</update>
 	
-	<delete id="deleteBoard" parameterType="long">
+	<delete id="deleteBoard">
 		DELETE 
 		  FROM BOARD
-		 WHERE NO = #{no}
+		 WHERE NO = #{param1}
 	</delete>
 
 </mapper>

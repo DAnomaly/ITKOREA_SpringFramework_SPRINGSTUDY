@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -65,7 +66,7 @@ public class FileController {
 		return "board/insertBoard";
 	}
 	
-	@RequestMapping("insert.do")
+	@PostMapping("insert.do")
 	public void insert(
 			Model model,
 			MultipartHttpServletRequest multipartRequest,
@@ -92,5 +93,23 @@ public class FileController {
 		model.addAttribute("request",request);
 		selectOneBoardCommand.execute(sqlSession, model);
 		return "board/viewBoard";
+	}
+	
+	@PostMapping("updateBoard.do")
+	public String updateBoard(
+			Model model,
+			MultipartHttpServletRequest request) {
+		model.addAttribute("request",request);
+		updateBoardCommand.execute(sqlSession, model);
+		return "redirect:selectOneBoard.do?no=" + request.getParameter("no");
+	}
+	
+	@PostMapping("deleteBoard.do")
+	public String deleteBoard(
+			Model model,
+			MultipartHttpServletRequest request) {
+		model.addAttribute("request", request);
+		deleteBoardCommand.execute(sqlSession, model);
+		return "redirect:selectListBoard.do";
 	}
 }

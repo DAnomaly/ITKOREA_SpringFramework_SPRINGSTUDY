@@ -48,7 +48,6 @@ public class InsertBoardCommand implements BoardCommand {
 				// 파일명_올린시간.확장자
 				String extention = originalFilename.substring(originalFilename.lastIndexOf(".") + 1); // 확장자
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-				filename = filename.replaceAll("[+]"," ");
 				String uploadFilename = filename + "_" + System.currentTimeMillis() + "." + extention;
 				
 				// 첨부파일을 저장할 서버의 위치
