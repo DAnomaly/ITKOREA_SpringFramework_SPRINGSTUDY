@@ -38,4 +38,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     WHERE NO = #{no}
 	</update>
 
+	<select id="findId" resultType="String">
+		SELECT ID
+		  FROM MEMBER
+		 WHERE EMAIL = #{email}
+	</select>
 </mapper>

@@ -9,4 +9,6 @@ public interface MemberDAO {
 	public int joinMember(Member member);
 	public void leave(long no);
 	public int editMember(Member member);
+	public String findId(String email);
+	
 }

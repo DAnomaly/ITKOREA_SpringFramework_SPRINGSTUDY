@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.member.command.EditMemberCommand;
 import com.koreait.member.command.EmailAuthCommand;
+import com.koreait.member.command.FindIdMemberCommand;
 import com.koreait.member.command.IdCheckCommand;
 import com.koreait.member.command.JoinMemberCommand;
 import com.koreait.member.command.LeaveMemberCommand;
@@ -31,6 +32,7 @@ public class MemberController {
 	private LogoutMemberCommand logoutMemberCommand;
 	private LeaveMemberCommand leaveMemberCommand;
 	private EditMemberCommand editMemberCommand;
+	private FindIdMemberCommand findIdMemberCommand;
 	
 	@Autowired
 	public MemberController(
@@ -41,7 +43,8 @@ public class MemberController {
 			LoginMemberCommand loginMemberCommand,
 			LogoutMemberCommand logoutMemberCommand,
 			LeaveMemberCommand leaveMemberCommand,
-			EditMemberCommand editMemberCommand) {
+			EditMemberCommand editMemberCommand,
+			FindIdMemberCommand findIdMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.idCheckCommand = idCheckCommand;
 		this.emailAuthCommand = emailAuthCommand;
@@ -50,6 +53,7 @@ public class MemberController {
 		this.logoutMemberCommand = logoutMemberCommand;
 		this.leaveMemberCommand = leaveMemberCommand;
 		this.editMemberCommand = editMemberCommand;
+		this.findIdMemberCommand = findIdMemberCommand;
 	}
 	
 	@RequestMapping("/")
@@ -133,4 +137,29 @@ public class MemberController {
 		editMemberCommand.execute(sqlSession, model);
 		return "redirect:mypage.do";
 	}
+	
+	@RequestMapping("findIdPage.do")
+	public String findIdPage() {
+		return "redirect:findPage.do?f=id";
+	}
+	@RequestMapping("findPwPage.do")
+	public String findPwPage() {
+		return "redirect:findPage.do?f=pw";
+	}
+	@RequestMapping("findPage.do")
+	public String findPage() {
+		return "member/find";
+	}
+	
+	@PostMapping(
+			value="findId.do",
+			produces="text/html; charset=UTF-8")
+	@ResponseBody
+	public String findId(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return findIdMemberCommand.execute(sqlSession, model);
+	}
+	
 }

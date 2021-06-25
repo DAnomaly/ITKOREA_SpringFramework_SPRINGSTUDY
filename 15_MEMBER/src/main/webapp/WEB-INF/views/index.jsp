@@ -50,6 +50,8 @@
 		<button>로그인</button>
 	</form>
 	<a href="joinPage.do">회원가입</a>
+	<a href="findIdPage.do">아이디찾기</a>
+	<a href="findPwPage.do">비밀번호찾기</a>
 	</c:if>
 </body>
 </html>
