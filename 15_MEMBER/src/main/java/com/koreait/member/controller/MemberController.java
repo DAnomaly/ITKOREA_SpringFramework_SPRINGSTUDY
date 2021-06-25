@@ -8,11 +8,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.member.command.EditMemberCommand;
 import com.koreait.member.command.EmailAuthCommand;
 import com.koreait.member.command.IdCheckCommand;
+import com.koreait.member.command.JoinMemberCommand;
+import com.koreait.member.command.LeaveMemberCommand;
+import com.koreait.member.command.LoginMemberCommand;
+import com.koreait.member.command.LogoutMemberCommand;
 
 @Controller
 public class MemberController {
@@ -20,15 +26,30 @@ public class MemberController {
 	private SqlSession sqlSession;
 	private IdCheckCommand idCheckCommand;
 	private EmailAuthCommand emailAuthCommand;
+	private JoinMemberCommand joinMemberCommand;
+	private LoginMemberCommand loginMemberCommand;
+	private LogoutMemberCommand logoutMemberCommand;
+	private LeaveMemberCommand leaveMemberCommand;
+	private EditMemberCommand editMemberCommand;
 	
 	@Autowired
 	public MemberController(
 			SqlSession sqlSession,
 			IdCheckCommand idCheckCommand,
-			EmailAuthCommand emailAuthCommand) {
+			EmailAuthCommand emailAuthCommand,
+			JoinMemberCommand joinMemberCommand,
+			LoginMemberCommand loginMemberCommand,
+			LogoutMemberCommand logoutMemberCommand,
+			LeaveMemberCommand leaveMemberCommand,
+			EditMemberCommand editMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.idCheckCommand = idCheckCommand;
 		this.emailAuthCommand = emailAuthCommand;
+		this.joinMemberCommand = joinMemberCommand;
+		this.loginMemberCommand = loginMemberCommand;
+		this.logoutMemberCommand = logoutMemberCommand;
+		this.leaveMemberCommand = leaveMemberCommand;
+		this.editMemberCommand = editMemberCommand;
 	}
 	
 	@RequestMapping("/")
@@ -61,5 +82,55 @@ public class MemberController {
 			Model model) {
 		model.addAttribute("request", request);
 		return emailAuthCommand.execute(model);
+	}
+	
+	@PostMapping(value="join.do")
+	public String join(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		joinMemberCommand.execute(sqlSession, model);
+		return "redirect:/";
+	}
+	
+	@PostMapping(value="login.do")
+	public String login(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		loginMemberCommand.execute(sqlSession, model);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="logout.do")
+	public String logout(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		logoutMemberCommand.execute(sqlSession, model);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="leave.do")
+	public String leave(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		leaveMemberCommand.execute(sqlSession, model);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="mypage.do")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
+	@RequestMapping("edit.do")
+	public String edit(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		editMemberCommand.execute(sqlSession, model);
+		return "redirect:mypage.do";
 	}
 }

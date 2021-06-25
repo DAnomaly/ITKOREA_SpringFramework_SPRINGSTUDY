@@ -9,7 +9,7 @@ public class Member {
 	private String pw;
 	private String name;
 	private String email;
-	private Date date;
+	private Date regdate;
 	
 	public long getNo() {
 		return no;
@@ -41,17 +41,13 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getDate() {
-		return date;
+	public Date getRegdate() {
+		return regdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
 	}
 	
-	@Override
-	public String toString() {
-		return "Member [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", date="
-				+ date + "]";
-	}
+	
 	
 }

@@ -5,11 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.member.dao.MemberDAO">
 
-	<select id="loginMember" resultType="com.koreait.member.dto.Member">
-		SELECT NO, ID, PW, NAME, REGDATE 
+	<select id="loginMember" parameterType="com.koreait.member.dto.Member" resultType="com.koreait.member.dto.Member">
+		SELECT NO, ID, PW, NAME, EMAIL, REGDATE 
 		  FROM MEMBER 
-		 WHERE ID = #{param1} 
-		   AND PW = #{param2}
+		 WHERE ID = #{id} 
+		   AND PW = #{pw}
 	</select>
 	
 	<select id="idCheck" resultType="int">
@@ -17,5 +17,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM MEMBER 
 		 WHERE ID = #{param1}
 	</select>
+
+	<insert id="joinMember" parameterType="com.koreait.member.dto.Member">
+		INSERT INTO MEMBER
+		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name}, #{email}, SYSDATE)
+	</insert>
+
+	<delete id="leave" parameterType="long">
+		DELETE
+		  FROM MEMBER
+		 WHERE NO = #{no}
+	</delete>
+
+	<update id="editMember" parameterType="com.koreait.member.dto.Member">
+		UPDATE MEMBER
+		   SET NAME = #{name}
+		<if test="pw != null">
+		     , PW = #{pw}
+		</if>
+	     WHERE NO = #{no}
+	</update>
 
 </mapper>

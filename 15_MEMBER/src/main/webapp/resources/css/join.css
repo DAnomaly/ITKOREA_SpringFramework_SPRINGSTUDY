@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+h1 {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+form {
+	margin: 0 auto;
+	padding: 10px;
+	width: 300px;
+	border: 1px solid silver;
+}
+
+/* input */
+input {
+	outline: none;
+	border: 0;
+}
+/* text,password */
+input[type="text"], input[type="password"] {
+	margin: 5px;
+	padding: 5px;
+	border-bottom: 1px solid silver;
+}
+input.not_check {
+	border-bottom: 1px solid red;
+}
+input.check {
+	border-bottom: 1px solid green;
+}
+input[type="text"]:focus, input[type="password"]:focus 	{
+	border-bottom: 1px solid blue;	
+}
+/* button */
+input[type="button"] {
+	font-size: 12px;
+	font-weight: bold;
+	box-sizing: border-box;
+	padding: 3px 5px;
+	background-color: #e0e0e0;
+	border: 2px solid white;
+	border-radius: 2px;
+}
+input[type="button"]:focus {
+	border: 2px solid gray;
+}

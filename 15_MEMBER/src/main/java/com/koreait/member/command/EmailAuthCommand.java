@@ -27,7 +27,7 @@ public class EmailAuthCommand {
 
 		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
 		String email = request.getParameter("email"); // 인증번호를 받는 사람 이메일
-		String key = getKey();
+		String key = SecurityUtils.createKey(6);
 		
 		// MimeMessage 클래스
 		// 이메일을 작성하는 클래스
@@ -50,15 +50,5 @@ public class EmailAuthCommand {
 		return key;
 	}
 
-	private String getKey() {
-		StringBuilder key = new StringBuilder();
-		for (int i = 0; i < 8; i++) {
-			if(Math.random() > 0.4) {
-				key.append((char)(Math.random() * ('Z' - 'A') + 'A'));
-			} else {
-				key.append((char)(Math.random() * ('9' - '0') + '0'));
-			}
-		}
-		return key.toString();
-	}
+	
 }

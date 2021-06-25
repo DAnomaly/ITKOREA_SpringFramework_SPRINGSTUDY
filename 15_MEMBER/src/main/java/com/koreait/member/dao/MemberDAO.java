@@ -4,7 +4,9 @@ import com.koreait.member.dto.Member;
 
 public interface MemberDAO {
 
-	public Member loginMember(String id, String pw);
+	public Member loginMember(Member member);
 	public int idCheck(String id);
-	
+	public int joinMember(Member member);
+	public void leave(long no);
+	public int editMember(Member member);
 }
