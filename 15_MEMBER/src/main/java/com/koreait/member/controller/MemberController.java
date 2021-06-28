@@ -8,13 +8,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.member.command.ChangePwMemberCommand;
 import com.koreait.member.command.EditMemberCommand;
 import com.koreait.member.command.EmailAuthCommand;
 import com.koreait.member.command.FindIdMemberCommand;
+import com.koreait.member.command.FindPwMemberCommand;
 import com.koreait.member.command.IdCheckCommand;
 import com.koreait.member.command.JoinMemberCommand;
 import com.koreait.member.command.LeaveMemberCommand;
@@ -33,6 +36,8 @@ public class MemberController {
 	private LeaveMemberCommand leaveMemberCommand;
 	private EditMemberCommand editMemberCommand;
 	private FindIdMemberCommand findIdMemberCommand;
+	private FindPwMemberCommand findPwMemberCommand;
+	private ChangePwMemberCommand changePwMemberCommand;
 	
 	@Autowired
 	public MemberController(
@@ -44,7 +49,9 @@ public class MemberController {
 			LogoutMemberCommand logoutMemberCommand,
 			LeaveMemberCommand leaveMemberCommand,
 			EditMemberCommand editMemberCommand,
-			FindIdMemberCommand findIdMemberCommand) {
+			FindIdMemberCommand findIdMemberCommand,
+			FindPwMemberCommand findPwMemberCommand,
+			ChangePwMemberCommand changePwMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.idCheckCommand = idCheckCommand;
 		this.emailAuthCommand = emailAuthCommand;
@@ -54,6 +61,8 @@ public class MemberController {
 		this.leaveMemberCommand = leaveMemberCommand;
 		this.editMemberCommand = editMemberCommand;
 		this.findIdMemberCommand = findIdMemberCommand;
+		this.findPwMemberCommand = findPwMemberCommand;
+		this.changePwMemberCommand = changePwMemberCommand;
 	}
 	
 	@RequestMapping("/")
@@ -160,6 +169,33 @@ public class MemberController {
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
 		return findIdMemberCommand.execute(sqlSession, model);
+	}
+	
+	@PostMapping(
+			value="findPw.do",
+			produces="text/html; charset=UTF-8")
+	@ResponseBody
+	public String findPw(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		return findPwMemberCommand.execute(sqlSession, model);
+		
+	}
+	
+	@GetMapping(
+			value="changePwPage.do")
+	public String changePwPage() {
+		return "member/changePw";
+	}
+	
+	@PostMapping(
+			value="changePw.do")
+	public String changePw(Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		changePwMemberCommand.execute(sqlSession, model);
+		return "redirect:/";
 	}
 	
 }

@@ -10,5 +10,6 @@ public interface MemberDAO {
 	public void leave(long no);
 	public int editMember(Member member);
 	public String findId(String email);
-	
+	public int findPw(String id, String email);
+	public int changePw(String pw, String id);
 }

@@ -34,7 +34,7 @@ public class EmailAuthCommand {
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		try {
 			mimeMessage.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			mimeMessage.setFrom(new InternetAddress("parksh980112@gmail.com","관리자")); // 보내는 사람
+			mimeMessage.setFrom(new InternetAddress("forspringlec@gmail.com","관리자")); // 보내는 사람
 			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(email)); // 받는 사람
 			mimeMessage.setSubject("인증 요청 메일입니다.");
 			mimeMessage.setText("인증번호는 '" + key + "'입니다.");

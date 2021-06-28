@@ -54,3 +54,18 @@
 * 환경: Spring MVC Project
 * Ajax 사용법
 * Jackson 라이브러리 사용
+
+## 13_CONTACT
+* 환경: Spring MVC Project
+* SPRING 작업 연습
+
+## 14_FILE
+* 환경: Spring MVC Project
+* 다중 또는 단일 파일 다운로드 (dependency: COMMONS IO, COMMONS FILEUPLOAD)
+
+## 15_MEMEBER
+* 환경: Spring MVC Project
+* 이메일 인증 (dependency: MAIL, SPRING CONTEXT SUPPORT)
+* 비밀번호 암호화, BASE64 인코딩-디코딩 (dependency: commons-codec)
+* 자동 JSON변환 (dependency: JACKSON)
+* 이메일을 통한 비밀번호 찾기, 아이디 찾기

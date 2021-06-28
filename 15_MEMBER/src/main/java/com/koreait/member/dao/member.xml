@@ -43,4 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM MEMBER
 		 WHERE EMAIL = #{email}
 	</select>
+	
+	<select id="findPw" resultType="int">
+		SELECT COUNT(NO)
+		  FROM MEMBER
+		 WHERE ID = #{param1}
+		   AND EMAIL = #{param2}
+	</select>
+	
+	<update id="changePw">
+		UPDATE MEMBER
+		   SET PW = #{param1}
+		 WHERE ID = #{param2}
+	</update>
 </mapper>
