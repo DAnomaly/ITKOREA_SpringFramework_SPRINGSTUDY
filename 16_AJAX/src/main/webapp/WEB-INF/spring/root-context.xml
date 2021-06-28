@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- com.zaxxer.hikari.HikariConfig -->
+	<!-- 
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="username" value="spring"/>
+		<property name="password" value="1111"/>
+	</bean>
+	 -->
+	<!-- com.zaxxer.hikari.HikariDataSource	-->
+	<!-- 
+	<bean id="hikariDataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg name="configuration" ref="hikariConfig"/>
+	</bean>	
+	 -->
+	<!-- org.mybatis.spring.SqlSessionFactoryBean -->
+	<!-- 
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="hikariDataSource"/>
+		<property name="mapperLocations" value="classpath:com/koreait/ajax/dao/*.xml"/>
+	</bean>
+	 -->
+	<!-- org.mybatis.spring.SqlSessionTemplate -->
+	<!-- 
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	 -->
+</beans>

@@ -191,7 +191,8 @@ public class MemberController {
 	
 	@PostMapping(
 			value="changePw.do")
-	public String changePw(Model model,
+	public String changePw(
+			Model model,
 			HttpServletRequest request) {
 		model.addAttribute("request",request);
 		changePwMemberCommand.execute(sqlSession, model);

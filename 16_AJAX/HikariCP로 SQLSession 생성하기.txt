@@ -1,0 +1,79 @@
+HikariCP로 SQLSession 생성하기
+
+1. 디펜던시를 추가한다.
+	<!-- MyBatis -->
+	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.4.6</version>
+	</dependency>
+	
+	<!-- MyBatis-Spring -->  
+	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.3.2</version>
+	</dependency>
+
+	<!-- HikariCP : 커넥션 풀 -->
+	<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+	<dependency>
+		<groupId>com.zaxxer</groupId>
+		<artifactId>HikariCP</artifactId>
+		<version>3.3.1</version>
+	</dependency>
+
+2. Bean을 생성한다.
+	1) root-context.xml
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="username" value="spring"/>
+		<property name="password" value="1111"/>
+	</bean>
+	
+	<!-- com.zaxxer.hikari.HikariDataSource -->	
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg name="configuration" ref="hikariConfig"/>
+	</bean>	
+	
+	<!-- org.mybatis.spring.SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations" value="classpath:com/koreait/ajax/dao/*.xml"/>
+	</bean>
+	
+	<!-- org.mybatis.spring.SqlSessionTemplate -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
+	2) BeanConfiguration.java
+	@Bean
+	public HikariConfig hikariConfig() {
+		HikariConfig config = new HikariConfig();
+		config.setDriverClassName("oracle.jdbc.OracleDriver");
+		config.setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:xe");
+		config.setUsername("spring");
+		config.setPassword("1111");
+		return config;
+	}
+	
+	@Bean
+	public HikariDataSource dataSource() {
+		return new HikariDataSource(hikariConfig());
+	}
+	
+	@Bean
+	public SqlSessionFactory sqlSessionFactory() throws Exception {
+		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/ajax/dao/*.xml"));
+		sqlSessionFactory.setDataSource(dataSource());
+		return sqlSessionFactory.getObject();
+	}
+	@Bean
+	public SqlSessionTemplate sqlSession() throws Exception {
+		return new SqlSessionTemplate(sqlSessionFactory());
+	}
