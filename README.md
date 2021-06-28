@@ -69,3 +69,8 @@
 * 비밀번호 암호화, BASE64 인코딩-디코딩 (dependency: commons-codec)
 * 자동 JSON변환 (dependency: JACKSON)
 * 이메일을 통한 비밀번호 찾기, 아이디 찾기
+
+## 16_AJAX
+* 환경: Spring MVC Project
+* 커넥션 풀 (HikariCP)
+* LOMBOK
