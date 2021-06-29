@@ -74,4 +74,6 @@
 * 환경: Spring MVC Project
 * 커넥션 풀 (HikariCP)
 * LOMBOK
-* AJAX : 패이징
+* AJAX : PAGING
+* popup
+* @RestController , RESTful

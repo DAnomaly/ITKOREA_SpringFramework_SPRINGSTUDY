@@ -26,7 +26,7 @@ public class InsertMemeberCommand implements MemberCommand {
 		Map<String, Object> map = model.asMap();
 		response = (HttpServletResponse)map.get("response");
 		Member member = (Member)map.get("member");
-		System.out.println(member);
+		logger.info("회원 등록됨: " + member.toString());
 
 		try {
 			MemberDAO memberDAO = sqlSession.getMapper(MemberDAO.class);

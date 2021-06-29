@@ -7,8 +7,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>회원정보 확인</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="/ajax/resources/js/viewMember.js" type="text/javascript" charset="utf-8"></script>
-	<link href="/ajax/resources/css/viewMember.css" type="text/css" rel="stylesheet">
+	<script src="/ajax/resources/js/viewMemberRest.js" type="text/javascript" charset="utf-8"></script>
+	<link href="/ajax/resources/css/viewMemberRest.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<h3>회원정보 확인</h3>

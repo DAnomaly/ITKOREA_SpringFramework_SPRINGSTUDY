@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+body {
+	text-align: center;
+}
+table {
+	margin: 0 auto;		
+}
+tr td:nth-of-type(1) {
+	font-weight: bold;
+}
+tr td:nth-of-type(2) {
+	text-align: left;
+}
+input {
+	padding: 5px;
+	background: none;
+	border: 0;
+	outline: none;
+	border-bottom: 1px solid silver;
+}
+input:focus {
+	border-bottom: 1px solid blue;
+}
+input:disabled {
+	color: gray;
+}
+input[type="button"] {
+	cursor: pointer;
+}
+input[type="button"]:hover {
+	border-bottom: 1px solid blue;
+}

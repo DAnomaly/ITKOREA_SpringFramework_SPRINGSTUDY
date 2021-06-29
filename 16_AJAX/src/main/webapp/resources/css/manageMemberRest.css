@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#paging {
+	text-align: center;
+}
+#paging a {
+	display: inline-block;
+	width: 20px;
+	margin: 3px;
+}
+.click {
+	color: blue;
+}
+.nonclick {
+	color: gray;
+	font-weight: bold;
+}
+.nowPage {
+	color: black;
+}

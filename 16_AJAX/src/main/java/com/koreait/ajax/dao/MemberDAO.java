@@ -10,4 +10,6 @@ public interface MemberDAO {
 	public int getTotalMemberCount();
 	public List<Member> selectMemberList(int beginRecord, int endRecord);
 	public int insertMember(Member member) throws DuplicateKeyException;
+	public int updateMember(Member member);
+	public int deleteMember(Member member);
 }

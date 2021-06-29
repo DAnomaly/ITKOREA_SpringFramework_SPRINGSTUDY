@@ -7,9 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>회원 관리</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" referrerpolicy="no-referrer" />
-	<link rel="styleSheet" href="/ajax/resources/css/manageMember.css" type="text/css"  >
+	<link rel="styleSheet" href="/ajax/resources/css/manageMemberRest.css" type="text/css"  >
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="/ajax/resources/js/manageMember.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/ajax/resources/js/manageMemberRest.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 	<h1>회원 관리</h1>

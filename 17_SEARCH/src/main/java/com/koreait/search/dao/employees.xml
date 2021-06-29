@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.search.dao.EmployeesDAO">
+
+	<select id="selectListEmployees" >
+		SELECT B.RN, B.EMPLOYEE_ID, B.FIRST_NAME, B.LAST_NAME, B.EMAIL, B.PHONE_NUMBER, B.HIRE_DATE, B.JOB_ID, B.SALARY, B.COMMISSION_PCT, B.MANAGER_ID, B.DEPARTMENT_ID 
+		  FROM (SELECT ROWNUM AS RN, A.EMPLOYEE_ID, A.FIRST_NAME, A.LAST_NAME, A.EMAIL, A.PHONE_NUMBER, A.HIRE_DATE, A.JOB_ID, A.SALARY, A.COMMISSION_PCT, A.MANAGER_ID, A.DEPARTMENT_ID
+		          FROM (SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID
+		                  FROM EMPLOYEE
+		                 ORDER BY EMPLOYEE_ID) A ) B
+		 WHERE B.RN BETWEEN #{param1} AND #{param2}
+	</select>
+
+
+</mapper>
