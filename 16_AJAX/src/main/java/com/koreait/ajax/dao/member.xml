@@ -5,23 +5,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.ajax.dao.MemberDAO">
 
-	<insert id="insertMember">
-		INSERT INTO MEMBER
-		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{address}, #{gender}, SYSDATE)
-	</insert>
-	
 	<select id="getTotalMemberCount" resultType="int">
 		SELECT COUNT(NO)
 		  FROM MEMBER
 	</select>
 	
-	<select id="selectMemberList" resultType="com.koreait.ajax.dto.Member" parameterType="java.util.Map">
+	<select id="selectMemberList" resultType="com.koreait.ajax.dto.Member">
 		SELECT B.NO, B.ID, B.NAME, B.ADDRESS, B.GENDER, B.REGDATE
 		  FROM (SELECT ROWNUM AS RN, A.NO, A.ID, A.NAME, A.ADDRESS, A.GENDER, A.REGDATE
 		          FROM (SELECT NO, ID, NAME, ADDRESS, GENDER, REGDATE
 		                  FROM MEMBER
 		                 ORDER BY NO DESC) A) B
-		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+		 WHERE B.RN BETWEEN #{param1} AND #{param2}
 	</select>
 	
+	<insert id="insertMember" parameterType="com.koreait.ajax.dto.Member">
+		INSERT INTO MEMBER
+		VALUES (MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{address}, #{gender}, SYSDATE)
+	</insert>
+	
+	<update id="updateMember" parameterType="com.koreait.ajax.dto.Member">
+		UPDATE MEMBER
+		   SET NAME = #{name}
+		     , ADDRESS = #{address}
+		     , GENDER = #{gender}
+		 WHERE NO = #{no}
+	</update>
+	
+	<delete id="deleteMember" parameterType="com.koreait.ajax.dto.Member">
+		DELETE
+		  FROM MEMBER
+		 WHERE NO = #{no}
+	</delete>
 </mapper>
