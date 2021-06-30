@@ -32,7 +32,7 @@ public class BeanConfiguration {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/ajax/dao/*.xml"));
+		sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/koreait/search/dao/*.xml"));
 		sqlSessionFactory.setDataSource(hikariDataSource());
 		return sqlSessionFactory.getObject();
 	}

@@ -176,6 +176,14 @@
 		    <scope>provided</scope>
 		</dependency>
 		
+		<!-- JSON IN JAVA -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20180813</version>
+		</dependency>
+		
 		<!-- commons-codec : 비밀번호 암호화 -->
 		<!-- https://mvnrepository.com/artifact/commons-codec/commons-codec
 		<dependency>

@@ -5,14 +5,46 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.search.dao.EmployeesDAO">
 
-	<select id="selectListEmployees" >
+	<resultMap type="com.koreait.search.dto.Employees" id="employeesMap">
+		<result property="employeeId" column="EMPLOYEE_ID"/>
+		<result property="firstName" column="FIRST_NAME"/>
+		<result property="lastName" column="LAST_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phoneNumber" column="PHONE_NUMBER"/>
+		<result property="hireDate" column="HIRE_DATE"/>
+		<result property="jobId" column="JOB_ID"/>
+		<result property="salary" column="SALARY"/>
+		<result property="commisionPct" column="COMMISSION_PCT"/>
+		<result property="managerId" column="MANAGER_ID"/>
+		<result property="departmentId" column="DEPARTMENT_ID"/>
+	</resultMap>
+
+	<select id="countEmployees" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM EMPLOYEES
+		<if test="c != null">
+		 WHERE ${c} LIKE #{s}
+		</if>
+	</select>
+
+	<select id="selectListEmployees" resultMap="employeesMap" parameterType="java.util.Map">
 		SELECT B.RN, B.EMPLOYEE_ID, B.FIRST_NAME, B.LAST_NAME, B.EMAIL, B.PHONE_NUMBER, B.HIRE_DATE, B.JOB_ID, B.SALARY, B.COMMISSION_PCT, B.MANAGER_ID, B.DEPARTMENT_ID 
 		  FROM (SELECT ROWNUM AS RN, A.EMPLOYEE_ID, A.FIRST_NAME, A.LAST_NAME, A.EMAIL, A.PHONE_NUMBER, A.HIRE_DATE, A.JOB_ID, A.SALARY, A.COMMISSION_PCT, A.MANAGER_ID, A.DEPARTMENT_ID
 		          FROM (SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID
-		                  FROM EMPLOYEE
-		                 ORDER BY EMPLOYEE_ID) A ) B
-		 WHERE B.RN BETWEEN #{param1} AND #{param2}
+		                  FROM EMPLOYEES
+						<if test="c != null">
+						 WHERE UPPER(${c}) LIKE UPPER(#{s})
+						</if>
+		                 ORDER BY EMPLOYEE_ID
+		                 ) A ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 
+	<select id="indexListEmployees" resultType="String">
+		SELECT DISTINCT ${_parameter}
+		  FROM EMPLOYEES
+		 ORDER BY ${_parameter}
+	</select>
+	
 
 </mapper>
