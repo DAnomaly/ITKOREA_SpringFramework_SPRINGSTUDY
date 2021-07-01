@@ -1,4 +1,4 @@
-package com.koreait.search.dao;
+package com.koreait.search;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.AbstractApplicationContext;
 
 import com.koreait.search.config.BeanConfiguration;
+import com.koreait.search.dao.EmployeesDAO;
 import com.koreait.search.dto.Employees;
 
 public class TestEmployeesDAO {

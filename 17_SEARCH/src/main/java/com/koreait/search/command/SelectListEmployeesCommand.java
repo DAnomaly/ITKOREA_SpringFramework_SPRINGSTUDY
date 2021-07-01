@@ -30,12 +30,22 @@ public class SelectListEmployeesCommand implements EmployeesCommand {
 		int nowpage = Integer.parseInt(opt.orElse("1"));
 		String c = request.getParameter("c");
 		String s = request.getParameter("s");
+		String bottom = request.getParameter("bottom");
+		String top = request.getParameter("top");
 		
 		Map<String, Object> searchMap = new HashMap<>();
 		if(c != null && !c.isEmpty()) 
 			searchMap.put("c", c);
 		if(s != null && !s.isEmpty())
 			searchMap.put("s", "%" + s + "%");
+		if(bottom != null && !bottom.isEmpty()) 
+			searchMap.put("bottom", Integer.parseInt(bottom));
+		else
+			searchMap.put("bottom",0);
+		if(top != null && !top.isEmpty())
+			searchMap.put("top", Integer.parseInt(top));
+		else
+			searchMap.put("top", 99999999);
 		int totalRecord = dao.countEmployees(searchMap); // DAO : TOTALRECORD
 		
 		Page page = PagingUtils.getPage(nowpage, totalRecord);

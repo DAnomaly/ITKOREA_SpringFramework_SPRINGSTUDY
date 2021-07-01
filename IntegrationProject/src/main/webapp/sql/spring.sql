@@ -1,0 +1,18 @@
+DROP TABLE BOARD;
+CREATE TABLE BOARD
+(
+	NO NUMBER PRIMARY KEY,
+	WRITER VARCHAR2(32),
+	TITLE VARCHAR2(32),
+	CONTENT VARCHAR2(32),
+	POSTDATE DATE
+);
+
+INSERT INTO BOARD VALUES (1, '관리자', '공지사항', '공지입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (2, '관리자', '요청사항', '요청사항공지입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (3, '관리자', '협조사항', '협조사항공지입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (4, '관리자', '필독사항', '필독사항공지입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (5, '관리자', '요구사항', '요구사항공지입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (6, '관리자', '자주묻는질문', '자주묻는질문입니다.', SYSDATE);
+INSERT INTO BOARD VALUES (7, '관리자', '계정찾기관련문의', '계정문의공지입니다.', SYSDATE);
+COMMIT;

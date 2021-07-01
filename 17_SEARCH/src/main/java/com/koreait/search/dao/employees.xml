@@ -33,7 +33,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		          FROM (SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID, SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID
 		                  FROM EMPLOYEES
 						<if test="c != null">
+						 <if test="!c.equalsIgnoreCase('SALARY')">
 						 WHERE UPPER(${c}) LIKE UPPER(#{s})
+						 </if>
+						 <if test="c.equalsIgnoreCase('SALARY')">
+						 WHERE ${c} BETWEEN #{bottom} AND #{top}
+						 </if>
 						</if>
 		                 ORDER BY EMPLOYEE_ID
 		                 ) A ) B
@@ -45,6 +50,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM EMPLOYEES
 		 ORDER BY ${_parameter}
 	</select>
-	
 
 </mapper>

@@ -14,7 +14,6 @@
 			c = $('#param_c').val();
 			s = $('#param_s').val();
 			fn_set();
-			fn_submit();
 			fn_init_btn();
 			fn_auto_complete();
 			$('#select_c').change();
@@ -29,16 +28,6 @@
 			}
 		}
 		
-		function fn_submit(){
-			$('#f').submit(function(event){
-				if($('#search').val() == ''){
-					alert('내용을 입력해 주세요.');
-					event.preventDefault();
-					return false;
-				}
-			});
-		}
-		
 		function fn_init_btn(){
 			$('#init_btn').click(function(){
 				location.href='list.do';
@@ -48,19 +37,26 @@
 		function fn_auto_complete(){
 			$('#select_c').change(function(){
 				$('#auto_complete_list').empty();
-				$.ajax({
-					url: 'index_list.do',
-					method: 'get',
-					data: 'c=' + $('#select_c').val(),
-					dataType: 'json',
-					success: function(data){
-						if(data.result){
-							$.each(data.list, function(i, item){
-								$('<option/>').val(item).appendTo('#auto_complete_list');
-							});
+				if($('#select_c').val() == 'SALARY'){
+					$('#default_box').hide();
+					$('#salary_box').show();
+				} else {
+					$('#default_box').show();
+					$('#salary_box').hide();
+					$.ajax({
+						url: 'index_list.do',
+						method: 'get',
+						data: 'c=' + $('#select_c').val(),
+						dataType: 'json',
+						success: function(data){
+							if(data.result){
+								$.each(data.list, function(i, item){
+									$('<option/>').val(item).appendTo('#auto_complete_list');
+								});
+							}
 						}
-					}
-				})
+					})
+				}
 			})
 			
 		}
@@ -115,6 +111,12 @@
 		input[type="submit"]:focus, input[type="button"]:focus {
 			border: 1px solid #ffffff;
 		}
+		.inline_block {
+			display: inline-block;
+		}
+		.number {
+			width: 80px;
+		}
 	</style>
 </head>
 <body>
@@ -129,10 +131,17 @@
 				<option id="EMAIL" value="EMAIL">EMAIL</option>
 				<option id="PHONE_NUMBER" value="PHONE_NUMBER">PHONE_NUMBER</option>
 				<option id="JOB_ID" value="JOB_ID">JOB_ID</option>
+				<option id="SALARY" value="SALARY">SALARY</option>
 				<option id="DEPARTMENT_ID" value="DEPARTMENT_ID">DEPARTMENT_ID</option>
 			</select>
-			<input type="text" name="s" id="search" placeholder="내용입력" list="auto_complete_list" autocomplete='off'/>
-			<datalist id="auto_complete_list"></datalist>
+			<div class="inline_block" id="default_box">
+				<input type="text" name="s" id="search" placeholder="내용입력" list="auto_complete_list" autocomplete='off'/>
+				<datalist id="auto_complete_list"></datalist>
+			</div>
+			<div class="inline_block" id="salary_box">
+				<input type="text" class="number" name="bottom" id="bottom" placeholder="최소" autocomplete='off'/>
+				<input type="text" class="number" name="top" id="top" placeholder="최대" autocomplete='off'/>
+			</div>
 			<input type="submit" value="검색"/>
 			<input type="button" value="전체조회" id="init_btn"/>
 		</div>
