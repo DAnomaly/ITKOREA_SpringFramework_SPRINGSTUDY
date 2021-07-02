@@ -11,7 +11,7 @@
 		</c:if>
 		<c:if test="${not empty loginMember}">
 		<span id="empty_login">
-			<span>회원님 안녕하세요!</span>
+			<span>'${loginMember.name}'님 안녕하세요!</span>
 			<a href="/mygallery/member/logout.do">로그아웃</a>
 		</span>
 		</c:if>

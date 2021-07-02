@@ -40,4 +40,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE EMAIL = #{email}
 	</select>
 
+	<update id="editMember" parameterType="com.koreait.mygallery.dto.Member">
+		UPDATE MEMBER
+		   SET NAME = #{name}
+		     , ADDRESS = #{address}
+		<choose>
+			<when test="pw == null || pw == ''"></when>
+			<otherwise>
+			, PW = #{pw}
+			</otherwise>
+		</choose>
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
 </mapper>

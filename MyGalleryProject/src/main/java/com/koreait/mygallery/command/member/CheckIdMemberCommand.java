@@ -10,6 +10,11 @@ import org.springframework.ui.Model;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 
+/**
+ * 아이디 중복 여부를 판단하는 커맨드
+ * 
+ * @author 박세환
+ */
 @Component
 public class CheckIdMemberCommand implements MemberCommand {
 

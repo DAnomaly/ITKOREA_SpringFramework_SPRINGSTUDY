@@ -12,6 +12,8 @@
 			fn_join_btn();
 			fn_f_submit();
 			fn_id_btn();
+			fn_email_btn();
+			fn_key_btn();
 		});
 		var idCheck = false;
 		function fn_pwCheck() {
@@ -48,27 +50,27 @@
 		}
 		var emailCheck = false;
 		function fn_join_btn() {
-			if(idCheck == false){
-				alter('아이디 중복확인을 해주세요.');
-				return;
-			}
-			if(fn_pwCheck() == false || fn_pw1Check() == false){
-				alert('비밀번호를 확인해 주세요.');
-				return;
-			}
-			if(fn_nameCheck() == false){
-				alert('이름을 입력해 주세요.');
-				return;
-			}
-			if(fn_telCheck() == false){
-				alert('전화번호를 입력해 주세요.');
-				return;
-			}
-			if(emailCheck == false){
-				alert('이메일 인증을 해 주세요.');
-				return;
-			}
 			$('#join_btn').click(function(){
+				if(idCheck == false){
+					alert('아이디 중복확인을 해주세요.');
+					return;
+				}
+				if(fn_pwCheck() == false || fn_pw1Check() == false){
+					alert('비밀번호를 확인해 주세요.');
+					return;
+				}
+				if(fn_nameCheck() == false){
+					alert('이름을 입력해 주세요.');
+					return;
+				}
+				if(fn_telCheck() == false){
+					alert('전화번호를 입력해 주세요.');
+					return;
+				}
+				if(emailCheck == false){
+					alert('이메일 인증을 해 주세요.');
+					return;
+				}
 				$('#f').submit();
 			})
 		}
@@ -105,7 +107,7 @@
 		}
 		function fn_id_btn(){
 			$('#id_btn').click(function(){
-				if(('#id').val() == ''){
+				if($('#id').val() == ''){
 					alert('아이디를 입력하세요.');
 					$('#id_btn').focus();
 					return;
@@ -123,6 +125,7 @@
 					success: function(data){
 						if(data.result) {
 							alert('사용할 수 있는 아이디입니다.');
+							idCheck = true;
 						} else {
 							alert('사용할 수 없는 아이디입니다.\n다른 아이디를 사용해 주세요.');
 							$('#id').attr('readonly', false);

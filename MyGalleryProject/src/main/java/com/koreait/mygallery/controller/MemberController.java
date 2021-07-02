@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.mygallery.command.member.CheckEmailMemberCommand;
 import com.koreait.mygallery.command.member.CheckIdMemberCommand;
+import com.koreait.mygallery.command.member.EditMemberCommand;
 import com.koreait.mygallery.command.member.JoinMemberCommand;
 import com.koreait.mygallery.command.member.LoginMemberCommand;
 import com.koreait.mygallery.command.member.LogoutMemberCommand;
@@ -31,18 +32,24 @@ public class MemberController {
 	private LogoutMemberCommand logoutMemberCommand;
 	private CheckIdMemberCommand checkIdMemberCommand;
 	private CheckEmailMemberCommand checkEmailMemberCommand;
+	private EditMemberCommand editMemberCommand;
 	
 	@Autowired
-	public MemberController(SqlSession sqlSession, JoinMemberCommand joinMemberCommand,
-			LoginMemberCommand loginMemberCommand, LogoutMemberCommand logoutMemberCommand,
-			CheckIdMemberCommand checkIdMemberCommand, CheckEmailMemberCommand checkEmailMemberCommand) {
-		super();
+	public MemberController(
+			SqlSession sqlSession, 
+			JoinMemberCommand joinMemberCommand,
+			LoginMemberCommand loginMemberCommand, 
+			LogoutMemberCommand logoutMemberCommand,
+			CheckIdMemberCommand checkIdMemberCommand, 
+			CheckEmailMemberCommand checkEmailMemberCommand,
+			EditMemberCommand editMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.joinMemberCommand = joinMemberCommand;
 		this.loginMemberCommand = loginMemberCommand;
 		this.logoutMemberCommand = logoutMemberCommand;
 		this.checkIdMemberCommand = checkIdMemberCommand;
 		this.checkEmailMemberCommand = checkEmailMemberCommand;
+		this.editMemberCommand = editMemberCommand;
 	}
 
 	/**
@@ -65,6 +72,16 @@ public class MemberController {
 		return "member/join";
 	}
 
+	/**
+	 * 마이페이지
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="mypage.do")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
 	/**
 	 * 로그인
 	 * 
@@ -128,7 +145,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 회원 이메일 중복 확인
+	 * 회원 이메일 중복 확인 및 인증코드 전송
 	 * 
 	 * @see CheckEmailMemberCommand
 	 * @see MemberDAO
@@ -165,6 +182,15 @@ public class MemberController {
 		return (String)logoutMemberCommand.execute(sqlSession, model).get("response");
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="edit.do",
+					method=RequestMethod.POST,
+					produces="application/json; charset=UTF-8")
+	public Map<String, Object> edit(
+			Model model,
+			@RequestBody Member member){
+		model.addAttribute("member", member);
+		return editMemberCommand.execute(sqlSession, model);
+	}
 }
 

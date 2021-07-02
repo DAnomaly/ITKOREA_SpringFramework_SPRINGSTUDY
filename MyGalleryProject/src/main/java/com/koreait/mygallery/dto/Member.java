@@ -15,6 +15,6 @@ public class Member {
 	private String tel;
 	private String email;
 	private String address;
-	private Date date;
+	private Date regdate;
 	private int state;
 }

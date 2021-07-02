@@ -8,4 +8,6 @@ public interface MemberDAO {
 	public int joinMember(Member member);
 	public int checkId(Member member);
 	public int checkEmail(Member member);
+	public int editMember(Member member);
+	
 }
