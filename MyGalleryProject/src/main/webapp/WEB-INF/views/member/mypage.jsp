@@ -81,67 +81,69 @@
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
-	<form id="f">
-		<input type="hidden" name="no" id="no" value="${loginMember.memberNo}"/> 
-		<h3>회원 정보 수정</h3>
-		<table>
-			<tbody>
-				<tr>
-					<td>아이디</td>
-					<td>
-						<input type="text" name="id" id="id" value="${loginMember.id}" disabled/>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="button" value="비밀번호 변경" id="pw_btn"/></td>
-				</tr>
-				<tr class="pw_box">
-					<td>비밀번호</td>
-					<td>
-						<input type="password" name="pw" id="pw" disabled/>
-					</td>
-				</tr>
-				<tr class="pw_box">
-					<td>비밀번호 재확인</td>
-					<td>
-						<input type="password" name="pw1" id="pw1" disabled/>
-					</td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td>
-						<input type="text" name="name" id="name" value="${loginMember.name}"/>
-					</td>
-				</tr>
-				<tr>
-					<td>전화번호</td>
-					<td>
-						<input type="text" name="tel" id="tel" value="${loginMember.tel}" disabled/>
-					</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>
-						<input type="text" name="email" id="email" value="${loginMember.email}" disabled/>
-					</td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td>
-						<input type="text" name="address" id="address" value="${loginMember.address}"/>
-					</td>
-				</tr>
-				<tr>
-					<td>가입일</td>
-					<td>
-						<input type="text" name="regdate" id="regdate" value="${loginMember.regdate}" disabled/>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<input type="button" value="회원정보수정" id="edit_btn"/>
-		<input type="button" value="회원탈퇴" id="remove_btn"/>		
-	</form>
+	<section>
+		<form id="f">
+			<input type="hidden" name="no" id="no" value="${loginMember.memberNo}"/> 
+			<h3>회원 정보 수정</h3>
+			<table>
+				<tbody>
+					<tr>
+						<td>아이디</td>
+						<td>
+							<input type="text" name="id" id="id" value="${loginMember.id}" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="button" value="비밀번호 변경" id="pw_btn"/></td>
+					</tr>
+					<tr class="pw_box">
+						<td>비밀번호</td>
+						<td>
+							<input type="password" name="pw" id="pw" disabled/>
+						</td>
+					</tr>
+					<tr class="pw_box">
+						<td>비밀번호 재확인</td>
+						<td>
+							<input type="password" name="pw1" id="pw1" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td>
+							<input type="text" name="name" id="name" value="${loginMember.name}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>전화번호</td>
+						<td>
+							<input type="text" name="tel" id="tel" value="${loginMember.tel}" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td>
+							<input type="text" name="email" id="email" value="${loginMember.email}" disabled/>
+						</td>
+					</tr>
+					<tr>
+						<td>주소</td>
+						<td>
+							<input type="text" name="address" id="address" value="${loginMember.address}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>가입일</td>
+						<td>
+							<input type="text" name="regdate" id="regdate" value="${loginMember.regdate}" disabled/>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="button" value="회원정보수정" id="edit_btn"/>
+			<input type="button" value="회원탈퇴" id="remove_btn"/>		
+		</form>
+	</section>
 </body>
 </html>

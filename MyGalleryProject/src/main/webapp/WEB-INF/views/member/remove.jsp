@@ -5,14 +5,14 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>MyGalleryProject : 회원탈퇴</title>
 </head>
 <body>
 	<h1>회원 탈퇴</h1>
 	<div>
 		<h3>정말로 탈퇴하실 건가요?</h3>
 		<p>작성하신 갤러리 수 : ${g_count}</p>
-		<p>작성하신 게시글 수 : ${b_count}</p>m
+		<p>작성하신 게시글 수 : ${b_count}</p>
 		<p>작성하신 게시글과 갤러리, 댓글은 사라지지 않습니다.</p>
 		<div>
 			<input type="button" id="yes" value="네" onclick="location.href='remove.do'"/>

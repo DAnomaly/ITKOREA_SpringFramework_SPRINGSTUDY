@@ -9,5 +9,7 @@ public interface MemberDAO {
 	public int checkId(Member member);
 	public int checkEmail(Member member);
 	public int editMember(Member member);
-	
+	public int removeMember(Member member);
+	public int countGalleryByNo(Member member);
+	public int countBoardByNo(Member member);
 }

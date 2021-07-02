@@ -14,6 +14,7 @@ public class Gallery {
 	private String content;
 	private Date postdate;
 	private Date lastmodify;
+	private String ip;
 	private long hit;
 	private String image;
 	private int state;

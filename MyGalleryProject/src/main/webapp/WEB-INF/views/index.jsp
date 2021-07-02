@@ -40,9 +40,12 @@
 			<ul id="gallery_ul">
 				
 			</ul>
+			<div class="paging" id="gallery_paging">
+			
+			</div>
 		</div>
 		<div id="box_board">
-			<a href="board/writeBoard.do">새글 쓰기</a>
+			<a href="board/writePage.do">새글 쓰기</a>
 			<form>
 				<select name="c">
 					<option value="ID">아이디</option>
@@ -57,6 +60,9 @@
 			<ul id="board_ul">
 				
 			</ul>
+			<div class="paging" id="board_paging">
+			
+			</div>
 		</div>
 	</section>
 </body>

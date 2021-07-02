@@ -19,9 +19,17 @@ import com.koreait.mygallery.command.member.EditMemberCommand;
 import com.koreait.mygallery.command.member.JoinMemberCommand;
 import com.koreait.mygallery.command.member.LoginMemberCommand;
 import com.koreait.mygallery.command.member.LogoutMemberCommand;
+import com.koreait.mygallery.command.member.RemoveMemberCommand;
+import com.koreait.mygallery.command.member.RemovePageMemberCommand;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 
+/**
+ * 회원과 관련된<br>
+ * 로그인, 로그아웃, 회원가입, 회원탈퇴 등을 당담하는 컨트롤러
+ * 
+ * @author 박세환
+ */
 @Controller
 @RequestMapping(value="member")
 public class MemberController {
@@ -33,6 +41,8 @@ public class MemberController {
 	private CheckIdMemberCommand checkIdMemberCommand;
 	private CheckEmailMemberCommand checkEmailMemberCommand;
 	private EditMemberCommand editMemberCommand;
+	private RemovePageMemberCommand removePageMemberCommand;
+	private RemoveMemberCommand removeMemberCommand;
 	
 	@Autowired
 	public MemberController(
@@ -42,7 +52,9 @@ public class MemberController {
 			LogoutMemberCommand logoutMemberCommand,
 			CheckIdMemberCommand checkIdMemberCommand, 
 			CheckEmailMemberCommand checkEmailMemberCommand,
-			EditMemberCommand editMemberCommand) {
+			EditMemberCommand editMemberCommand,
+			RemovePageMemberCommand removePageMemberCommand,
+			RemoveMemberCommand removeMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.joinMemberCommand = joinMemberCommand;
 		this.loginMemberCommand = loginMemberCommand;
@@ -50,6 +62,8 @@ public class MemberController {
 		this.checkIdMemberCommand = checkIdMemberCommand;
 		this.checkEmailMemberCommand = checkEmailMemberCommand;
 		this.editMemberCommand = editMemberCommand;
+		this.removePageMemberCommand = removePageMemberCommand;
+		this.removeMemberCommand = removeMemberCommand;
 	}
 
 	/**
@@ -80,6 +94,19 @@ public class MemberController {
 	@RequestMapping(value="mypage.do")
 	public String mypage() {
 		return "member/mypage";
+	}
+	
+	/**
+	 * 회원 탈퇴 페이지
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="removePage.do")
+	public String removePage(Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		removePageMemberCommand.execute(sqlSession, model);
+		return "member/remove";
 	}
 	
 	/**
@@ -182,6 +209,15 @@ public class MemberController {
 		return (String)logoutMemberCommand.execute(sqlSession, model).get("response");
 	}
 	
+	/**
+	 * 회원 정보 수정
+	 * 
+	 * @see EditMemberCommand
+	 * @see MemberDAO
+	 * @param model
+	 * @param member
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="edit.do",
 					method=RequestMethod.POST,
@@ -192,5 +228,25 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return editMemberCommand.execute(sqlSession, model);
 	}
+	
+	/**
+	 * 회원 탈퇴
+	 * 
+	 * @see RemoveMemberCommand
+	 * @see MemberDAO
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="remove.do",
+					produces="text/html; charset=UTF-8")
+	public String remove(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return (String)removeMemberCommand.execute(sqlSession, model).get("response");
+	}
+	
 }
 

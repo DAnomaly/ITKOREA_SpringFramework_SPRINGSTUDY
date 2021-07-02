@@ -53,4 +53,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE MEMBER_NO = #{memberNo}
 	</update>
 
+	<update id="removeMember" parameterType="com.koreait.mygallery.dto.Member">
+		UPDATE MEMBER
+		   SET STATE = -1
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
+
+	<select id="countGalleryByNo" resultType="int" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT COUNT(*)
+		  FROM GALLERY
+		 WHERE ID = #{id}
+	</select>
+
+	<select id="countBoardByNo" resultType="int" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT COUNT(*)
+		  FROM BOARD
+		 WHERE ID = #{id}
+	</select>
+	
 </mapper>
