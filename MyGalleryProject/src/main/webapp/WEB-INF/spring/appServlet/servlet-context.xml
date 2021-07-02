@@ -21,9 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.koreait.mygallery.controller" />
-	<context:component-scan base-package="com.koreait.mygallery.config" />
-	
+	<context:component-scan base-package="com.koreait.mygallery" />
 	
 	
 </beans:beans>

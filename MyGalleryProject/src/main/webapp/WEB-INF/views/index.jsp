@@ -4,32 +4,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>MyGalleryProject</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		
+	</script>
 </head>
 <body>
-	<header>
-		<h1>MyGalleryProject</h1>
-		<div>
-			<span id="">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
-			</span>
-			<span>
-				<span>회원님 안녕하세요!</span>
-				<a herf="">로그아웃</a>
-			</span>
-		</div>
-		<nav>
-			<ul>
-				<li>갤러리</li>
-				<li>자유게시판</li>
-				<li>마이페이지</li>
-			</ul>
-		</nav>
-	</header>
+	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
+	<input type="hidden" name="viewType" id="view_type" value="${param.v}"/>
+	<input type="hidden" name="viewPage" id="view_page" value=""/>
 	<section>
-	
+		<div id="box_gallery">
+			<ul id="gallery_ul"></ul>
+		</div>
+		<div id="box_board">
+			<ul id="board_ul"></ul>
+		</div>
 	</section>
 </body>
 </html>

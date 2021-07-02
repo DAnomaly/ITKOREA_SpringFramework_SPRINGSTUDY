@@ -6,6 +6,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.mygallery.dao.MemberDAO">
 
 
+	<select id="loginMember" resultType="com.koreait.mygallery.dto.Member" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO
+			 , ID
+			 , PW
+			 , NAME
+		 	 , TEL
+		 	 , EMAIL
+			 , ADDRESS
+		 	 , REGDATE
+			 , STATE
+		  FROM MEMBER
+		 WHERE ID = #{id}
+		   AND PW = #{pw}
+		   AND STATE = 0
+	</select>
+	
+	<insert id="joinMember" parameterType="com.koreait.mygallery.dto.Member">
+		INSERT INTO MEMBER VALUES(
+			MEMBER_SEQ.NEXTVAL, #{id}, #{pw}, #{name}, #{tel}, #{email}, #{address}, SYSDATE, 0
+		)
+	</insert>
 
+	<select id="checkId" resultType="int" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT COUNT(*)
+		  FROM MEMBER
+		 WHERE ID = #{id}
+	</select>
+
+	<select id="checkEmail" resultType="int" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT COUNT(*)
+		  FROM MEMBER
+		 WHERE EMAIL = #{email}
+	</select>
 
 </mapper>
