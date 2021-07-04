@@ -18,6 +18,13 @@
 				$('#box_board').hide();
 			}
 		})
+		function fn_show_gallerylist() {
+			
+		}
+		function fn_show_boardList() {
+			
+		}
+		
 	</script>
 </head>
 <body>

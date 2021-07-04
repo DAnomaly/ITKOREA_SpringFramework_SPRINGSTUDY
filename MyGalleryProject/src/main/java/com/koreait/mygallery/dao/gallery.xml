@@ -10,8 +10,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (GALLERY_SEQ.NEXTVAL, #{id}, #{title}, #{content}, #{postdate}, SYSDATE, SYSDATE, #{ip}, 0, #{image})
 	</insert>
 	
+	<insert id="insertGalleryComment" parameterType="com.koreait.mygallery.dto.GalleryCom">
+		INSERT INTO GALLERY_COM
+		VALUES (GALLERY_COM_SEQ.NEXTVAL, #{galleryNo}, #{id}, #{content}, #{postdate}, #{ip})
+	</insert>
+	
 	<select id="selectOneGallery">
-		SELECT GALLERY_NO AS GALLERYNO 
+		SELECT GALLERY_NO AS GALLERYNO
 		     , ID
 		     , TITLE
 		     , CONTENT
@@ -24,14 +29,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE GALLERY_NO = ${_parameter}
 	</select>
 
+	<select id="selectGalleryComment">
+		SELECT GALLERY_COM_NO AS GALLERYCOMNO
+		     , GALLERY_NO AS GALLERYNO
+		     , ID
+		     , CONTENT
+		     , POSTDATE
+		     , IP
+		  FROM GALLERY
+		 WHERE GALLERY_NO = ${_parameter}
+	</select>
+
 	<update id="updateGallery" parameterType="com.koreait.mygallery.dto.Gallery">
 		UPDATE GALLERY
 		   SET TITLE = #{title}
 		     , CONTENT = #{content}
 		     , LASTMODIFY = SYSDATE
 		     , IP = #{ip}
+		<if test="image != null">
 		     , IMAGE = #{image}
+		</if>
 		 WHERE GALLERY_NO = #{galleryNo}
 	</update>
+	
+	<delete id="deleteGallery">
+		DELETE 
+		  FROM GALLERY
+		 WHERE GALLERY_NO = #{_parameter}
+	</delete>
+	
+	<delete id="deleteGalleryCommentByGalleryNo">
+		DELETE
+		  FROM GALLERY_COM
+		 WHERE GALLERY_NO = #{_parameter}
+	</delete>
+	
+	<delete id="deleteGalleryCommentByNo">
+		DELETE
+		  FROM GALLERY_COM
+		 WHERE GALLERY_COM = #{_parameter}
+	</delete>
 	
 </mapper>

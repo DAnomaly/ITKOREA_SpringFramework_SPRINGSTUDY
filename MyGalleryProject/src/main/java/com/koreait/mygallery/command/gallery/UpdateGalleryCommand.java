@@ -4,73 +4,71 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.Gallery;
-import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
-/**
- * 갤러리 등록 커맨드
- * 
- * @see GalleryController
- * @author 박세환
- */
 @Component
-public class WriteGalleryCommand implements GalleryCommand {
+public class UpdateGalleryCommand implements GalleryCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
+		
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest)model.asMap().get("request");
-		HttpSession session = request.getSession();
-		String id = ((Member)session.getAttribute("loginMember")).getId();
+		long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String ip = SecurityUtils.getIp(request);
-		String image = getFilename(request, "image");
+		String image = changeImage(request, "image1", "image2");
 		
 		Gallery gallery = new Gallery();
-		gallery.setId(id);
+		gallery.setGalleryNo(galleryNo);
 		gallery.setTitle(title);
 		gallery.setContent(content);
 		gallery.setIp(ip);
 		gallery.setImage(image);
 		
 		GalleryDAO dao = sqlSession.getMapper(GalleryDAO.class);
-		int result = dao.insertGallery(gallery);
+		int result = dao.updateGallery(gallery); 
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("<script>");
 		if(result > 0) {
-			sb.append("alert('정상적으로 등록되었습니다.');");
-			sb.append("location.href='/mygallery/index.do?v=gallery';");
+			sb.append("alert('정상적으로 수정되었습니다.');");
+			sb.append("location.href='selectOne.do?no=");
+			sb.append(gallery.getGalleryNo());
+			sb.append("';");
 		} else {
-			sb.append("alert('오류가 발생했습니다.');");
+			sb.append("alert('수정 도중 오류가 발생했습니다.');");
 			sb.append("history.back();");
 		}
 		sb.append("</script>");
+		
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("response", sb.toString());
-		return resultMap;
+		return null;
 	}
-
+	
 	/**
-	 * file을 생성하면서 새롭게 filename을 정하고 반환합니다.
+	 * 전달 받은 파일이 존재하는지 확인한 뒤,<br>
+	 * 파일이 존재하면 기존 파일을 삭제하고,<br>
+	 * 새로운 파일을 저장한 뒤 파일 이름을 반환합니다.
 	 * 
 	 * @param request 
-	 * @param param 파라미터명
+	 * @param prevFilename 이전 파일명
+	 * @param newFilename 새로운 파일명
 	 * @return filename 파일명
 	 */
-	private String getFilename(MultipartHttpServletRequest request ,String param) {
-		MultipartFile multipartFile = request.getFile(param);
+	private String changeImage(MultipartHttpServletRequest request ,String prevFilename, String newFilename) {
+		MultipartFile multipartFile = request.getFile(newFilename);
+		if(multipartFile == null || multipartFile.isEmpty())
+			return null;
 		String path = "resources/archive"; // 파일 경로
 		String realPath = request.getServletContext().getRealPath(path);
 		File archive = new File(realPath);
@@ -78,6 +76,13 @@ public class WriteGalleryCommand implements GalleryCommand {
 			logger.warn("파일 경로를 찾지 못하여 새로 생성합니다.");
 			archive.mkdirs();
 		}
+		// 기존 첨부를 삭제한다.
+		File prevFile = new File(archive, prevFilename);
+		if(prevFile.exists())
+			if(prevFile.delete())
+				logger.info(prevFilename + "을 삭제했습니다.");
+			else
+				logger.info(prevFilename + "을 삭제하는데에 실패했습니다.");
 		// 새 첨부를 올린다.
 		String originalFilename = multipartFile.getOriginalFilename();
 		int lastIndex = originalFilename.lastIndexOf(".");
@@ -93,6 +98,7 @@ public class WriteGalleryCommand implements GalleryCommand {
 			e.printStackTrace();
 		}
 		return uploadFilename;
+		
 	}
 	
 }

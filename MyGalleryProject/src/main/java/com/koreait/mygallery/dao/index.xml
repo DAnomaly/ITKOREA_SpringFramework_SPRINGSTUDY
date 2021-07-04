@@ -5,7 +5,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.mygallery.dao.IndexDAO">
 
+	<select id="countGallery" resultType="long" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM GALLERY
+		<if test="c != null">
+		 WHERE ${c} = #{q}
+		</if>
+	</select>
 
-
-
+	<select id="selectListGallery" resultType="com.koreait.mygallery.dto.Gallery" parameterType="java.util.Map">
+		SELECT B.GALLERY_NO AS GALLERYNO, B.ID, B.TITLE, B.CONTENT, B.POSTDATE, B.LASTMODIFY, B.IP, B.HIT, B.IMAGE
+		  FROM (SELECT ROWNUM AS RN, A.GALLERY_NO, A.ID, A.TITLE, A.CONTENT, A.POSTDATE, A.LASTMODIFY, A.IP, A.HIT, A.IMAGE
+		          FROM (SELECT ROWNUM AS RN, GALLERY_NO, ID, TITLE, CONTENT, POSTDATE, LASTMODIFY, IP, HIT, IMAGE
+		          	 	  FROM GALLERY
+						<if test="c != null">
+		          	 	 WHERE ${C} = #{q}
+		          	 	</if> 
+		          	 	 ORDER BY POSTDATE DESC;
+		          	   ) A 
+		       ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="countBoard" resultType="long" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM BOARD
+		<if test="c != null">
+		 WHERE ${c} = #{q}
+		</if>
+	</select>
+	
+	<select id="selectListBoard" resultType="com.koreait.mygallery.dto.Board" parameterType="java.util.Map">
+		SELECT B.BOARD_NO AS BOARDNO, B.ID, B.CONTENT, B.POSTDATE, B.IP, B.STATE, B.GROUPNO, B.GROUPORD, B.DEPTH 
+		  FROM (SELECT ROWNUM AS RN, A.BOARD_NO, A.ID, A.CONTENT, A.POSTDATE, A.IP, A.STATE, A.GROUPNO, A.GROUPORD, A.DEPTH
+		          FROM (SELECT BOARD_NO, ID, CONTENT, POSTDATE, IP, STATE, GROUPNO, GROUPORD, DEPTH 
+		                  FROM BOARD
+						<if test="c != null">
+		          	 	 WHERE ${C} = #{q}
+		          	 	</if> 
+		                 ORDER BY GROUPNO DESC, GROUPORD
+		               ) A
+		       ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
 </mapper>
