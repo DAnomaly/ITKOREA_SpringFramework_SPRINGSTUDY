@@ -8,31 +8,16 @@
 	<title>MyGalleryProject</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script>
-		var page = 1;
-		$(document).ready(function(){
-			if($('#view_type').val() == 'board'){
-				$('#box_gallery').hide();
-				$('#box_board').show();
-			} else {
-				$('#box_gallery').show();
-				$('#box_board').hide();
-			}
-		})
-		function fn_show_gallerylist() {
-			
+		function move(i){
+			location.href='viewPage.do?no=' + i;
 		}
-		function fn_show_boardList() {
-			
-		}
-		
 	</script>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
-	<input type="hidden" name="viewType" id="view_type" value="${param.v}"/>
 	<section>
 		<div id="box_gallery">
-			<a href="gallery/writePage.do">새 갤러리 작성</a>
+			<a href="writePage.do">새 갤러리 작성</a>
 			<form>
 				<select name="c">
 					<option value="ID">아이디</option>
@@ -48,27 +33,25 @@
 				
 			</ul>
 			<div class="paging" id="gallery_paging">
-			
-			</div>
-		</div>
-		<div id="box_board">
-			<a href="board/writePage.do">새글 쓰기</a>
-			<form>
-				<select name="c">
-					<option value="ID">아이디</option>
-					<option value="TITLE">제목</option>
-					<option value="CONTENT">내용</option>
-					<option value="BOTH">제목+내용</option>
-				</select>
-				<input type="text" name="q" placeholder="게시글 검색"/>
-				<input type="button" value="검색" id="b_search_btn"/>
-				<input type="button" value="초기화" id="b_init_btn"/>
-			</form>
-			<ul id="board_ul">
-				
-			</ul>
-			<div class="paging" id="board_paging">
-			
+				<ul>
+					<c:if test="${empty list}">
+					<li>
+						<ul>
+							<li>등록된 갤러리가 없습니다.</li>
+						</ul>
+					</li>
+					</c:if>
+					<c:forEach items="${list}" var="gallery">
+					<li>
+						<ul onclick="move(${gallery.galleryNo})">
+							<li><a href="viewPage.do?no=${gallery.galleryNo}"><img alt="${gallery.image}" src="/mygallery/resources/archive/${gallery.image}"/></a></li>
+							<li>${gallery.title}</li>
+							<li>${gallery.id}</li>
+							<li>${gallery.hit}</li>
+						</ul>
+					</li>
+					</c:forEach>
+				</ul>
 			</div>
 		</div>
 	</section>

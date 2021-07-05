@@ -41,7 +41,7 @@ public class UpdateGalleryCommand implements GalleryCommand {
 		sb.append("<script>");
 		if(result > 0) {
 			sb.append("alert('정상적으로 수정되었습니다.');");
-			sb.append("location.href='selectOne.do?no=");
+			sb.append("location.href='viewPage.do?no=");
 			sb.append(gallery.getGalleryNo());
 			sb.append("';");
 		} else {
@@ -52,7 +52,7 @@ public class UpdateGalleryCommand implements GalleryCommand {
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put("response", sb.toString());
-		return null;
+		return resultMap;
 	}
 	
 	/**

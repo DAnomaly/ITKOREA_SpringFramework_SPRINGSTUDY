@@ -2,9 +2,11 @@ package com.koreait.mygallery.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Data
+@ToString
 public class Board {
 	private long boardNo;
 	private String id;

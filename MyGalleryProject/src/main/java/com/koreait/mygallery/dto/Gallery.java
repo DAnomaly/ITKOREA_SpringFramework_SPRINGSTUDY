@@ -17,5 +17,4 @@ public class Gallery {
 	private String ip;
 	private long hit;
 	private String image;
-	private int state;
 }

@@ -5,17 +5,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.mygallery.dao.GalleryDAO">
 
+	<select id="countGallery" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM GALLERY
+		<if test="c != null">
+		 WHERE ${c} = #{q}
+		</if>
+	</select>
+
+	<select id="selectListGallery" resultType="com.koreait.mygallery.dto.Gallery" parameterType="java.util.Map">
+		SELECT B.GALLERY_NO AS GALLERYNO, B.ID, B.TITLE, B.CONTENT, B.POSTDATE, B.LASTMODIFY, B.IP, B.HIT, B.IMAGE
+		  FROM (SELECT ROWNUM AS RN, A.GALLERY_NO, A.ID, A.TITLE, A.CONTENT, A.POSTDATE, A.LASTMODIFY, A.IP, A.HIT, A.IMAGE
+		          FROM (SELECT ROWNUM AS RN, GALLERY_NO, ID, TITLE, CONTENT, POSTDATE, LASTMODIFY, IP, HIT, IMAGE
+		          	 	  FROM GALLERY
+						<if test="c != null">
+		          	 	 WHERE ${C} = #{q}
+		          	 	</if> 
+		          	 	 ORDER BY POSTDATE DESC
+		          	   ) A 
+		       ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
 	<insert id="insertGallery" parameterType="com.koreait.mygallery.dto.Gallery">
 		INSERT INTO GALLERY 
-		VALUES (GALLERY_SEQ.NEXTVAL, #{id}, #{title}, #{content}, #{postdate}, SYSDATE, SYSDATE, #{ip}, 0, #{image})
+		VALUES (GALLERY_SEQ.NEXTVAL, #{id}, #{title}, #{content}, SYSDATE, SYSDATE, #{ip}, 0, #{image})
 	</insert>
 	
 	<insert id="insertGalleryComment" parameterType="com.koreait.mygallery.dto.GalleryCom">
 		INSERT INTO GALLERY_COM
-		VALUES (GALLERY_COM_SEQ.NEXTVAL, #{galleryNo}, #{id}, #{content}, #{postdate}, #{ip})
+		VALUES (GALLERY_COM_SEQ.NEXTVAL, #{galleryNo}, #{id}, #{content}, SYSDATE, #{ip})
 	</insert>
 	
-	<select id="selectOneGallery">
+	<select id="selectOneGallery" resultType="com.koreait.mygallery.dto.Gallery">
 		SELECT GALLERY_NO AS GALLERYNO
 		     , ID
 		     , TITLE
@@ -29,15 +51,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE GALLERY_NO = ${_parameter}
 	</select>
 
-	<select id="selectGalleryComment">
+	<select id="selectGalleryComment" resultType="com.koreait.mygallery.dto.GalleryCom">
 		SELECT GALLERY_COM_NO AS GALLERYCOMNO
 		     , GALLERY_NO AS GALLERYNO
 		     , ID
 		     , CONTENT
 		     , POSTDATE
 		     , IP
-		  FROM GALLERY
+		  FROM GALLERY_COM
 		 WHERE GALLERY_NO = ${_parameter}
+		 ORDER BY POSTDATE
+	</select>
+	
+	<select id="selectOneGalleryComment" resultType="com.koreait.mygallery.dto.GalleryCom">
+		SELECT GALLERY_COM_NO AS GALLERYCOMNO
+		     , GALLERY_NO AS GALLERYNO
+		     , ID
+		     , CONTENT
+		     , POSTDATE
+		     , IP
+		  FROM GALLERY_COM
+		 WHERE GALLERY_COM_NO = ${_parameter}
+	
 	</select>
 
 	<update id="updateGallery" parameterType="com.koreait.mygallery.dto.Gallery">
@@ -67,7 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteGalleryCommentByNo">
 		DELETE
 		  FROM GALLERY_COM
-		 WHERE GALLERY_COM = #{_parameter}
+		 WHERE GALLERY_COM_NO = #{_parameter}
 	</delete>
 	
 </mapper>

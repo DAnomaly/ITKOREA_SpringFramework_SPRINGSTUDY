@@ -6,24 +6,48 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>MyGalleryProject : 갤러리 수정</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			fn_f_submit();
+		})
+		function fn_f_submit(){
+			// 버튼 클릭시 폼 작동
+			$('#f_btn').click(function(){
+				$('#f').submit();
+			});
+			// 폼 작동
+			$('#f').submit(function(event){
+				if($('#title').val() == ''){
+					alert('제목은 필수입니다.');
+					$('#title').focus();
+					event.preventDefault();
+					return false;
+				}
+				return true;
+			});
+		}
+	</script>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
 	<section>
-		<form action="insert.do" method="post" enctype="multipart/form-data">
+		<form id="f" action="update.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="galleryNo" value="${gallery.galleryNo}"/>
 			<label>
 				<span>제목</span><br>
-				<input type="text" name="title" id="title" value="${gallery.title}"/>
+				<input type="text" name="title" id="title" value="${gallery.title}"/><br>
 			</label>
 			<label>
 				<span>내용</span><br>
-				<textarea name="content" id="content">${gallery.content}</textarea>
+				<textarea name="content" id="content">${gallery.content}</textarea><br>
 			</label>
-			<label>
+			<span>
 				<span>이미지</span><br>
-				<input type="file" name="image" id="image" value="${gallery.image}"/>
-			</label>
-			<input type="button" value="수정"/>
+				<input type="hidden" name="image1" value="${gallery.image}"/>
+				<input type="file" name="image2" id="image"/><br>
+			</span>
+			<input type="button" value="작성" id="f_btn"/>
 		</form>
 	</section>
 </body>

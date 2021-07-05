@@ -110,6 +110,26 @@ public class MemberController {
 	}
 	
 	/**
+	 * 아이디/비밀번호 찾기 페이지
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="findView.do")
+	public String findPage() {
+		return "member/find";
+	}
+	
+	@RequestMapping(value="getidView.do")
+	public String getIdPage() {
+		return "member/getid";
+	}
+	
+	@RequestMapping(value="changepwView.do")
+	public String changepwPage() {
+		return "member/changepw";
+	}
+	
+	/**
 	 * 로그인
 	 * 
 	 * @see LoginMemberCommand

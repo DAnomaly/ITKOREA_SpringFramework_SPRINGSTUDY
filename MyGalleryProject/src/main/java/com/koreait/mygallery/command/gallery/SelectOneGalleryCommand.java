@@ -9,10 +9,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.Gallery;
 import com.koreait.mygallery.dto.GalleryCom;
 
+/**
+ * viewPage.do 에 보여질<br>
+ * Gallery와<br>
+ * GalleryCom을 가져옵니다. 
+ * 
+ * @see GalleryController
+ * @see GalleryDAO
+ * @author ITSC
+ */
 @Component
 public class SelectOneGalleryCommand implements GalleryCommand {
 

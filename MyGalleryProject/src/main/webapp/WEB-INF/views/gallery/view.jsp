@@ -5,24 +5,103 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
+	<title>MyGalleryProject : ${gallery.title}</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function(){
+			fn_f_submit();
+		})
+		function fn_f_submit(){
+			$('#f_btn').click(function(){
+				$('#f').submit();
+			});
+			$('#f').submit(function(event){
+				if($('#com_content').val() == ''){
+					alert('댓글을 작성해 주세요.');
+					event.preventDefault();
+					return false;
+				}
+				return true;
+			});
+		}
+		function fn_del(no){
+			if(confirm('정말로 삭제하시겠습니까?'))
+				location.href='del.do?no=' + no;
+		}
+		function fn_com_del(no){
+			if(confirm('정말로 삭제하시겠습니까?'))
+				location.href="delCom.do?no=" + no;
+		}
+	</script>
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
 	<section>
 		<div>
-			<label>
-				<span>제목</span><br>
-				<input type="text" name="title" id="title" value="${gallery.title}"/>
-			</label>
-			<label>
-				<span>이미지</span><br>
-				<input type="file" name="image" id="image" value="${gallery.image}"/>
-			</label>
-			<label>
-				<span>내용</span><br>
-				<textarea name="content" id="content">${gallery.content}</textarea>
-			</label>
+			<div>
+				<span class="hidden">이미지</span><br>
+				<img alt="${gallery.image}" src="/mygallery/resources/archive/${gallery.image}"/>
+			</div>
+			<span class="hidden">제목</span>
+			<h3>
+				${gallery.title}
+				<span class="writer">
+					${gallery.id}
+					<span class="postdate">
+						${gallery.postdate}
+					</span>
+					<c:if test="${loginMember.id == gallery.id}">
+						<a href="editPage.do?no=${gallery.galleryNo}">수정</a>
+						<a href="javascript:fn_del(${gallery.galleryNo});">삭제</a>
+					</c:if>
+				</span>
+			</h3>
+			<br>
+			<c:if test="${not empty gallery.content}">
+			<span class="hidden">내용</span>
+			<pre class="content">${gallery.content}</pre>
+			</c:if>
+		</div>
+		<div>
+			<dl>
+			<%-- 댓글들 --%>
+			<c:forEach items="${comments}" var="comment">
+				<dt>
+					<span class="id">${comment.id}</span>
+					<span class="postdate">${comment.postdate}</span>
+					<c:if test="${loginMember.id == gallery.id}">
+						<a href="javascript:fn_com_del(${comment.galleryComNo});">삭제</a>
+					</c:if>
+				</dt>
+				<dd>
+					<pre>${comment.content}</pre>
+				</dd>
+			</c:forEach>
+			<%-- 댓글작성 : 로그인 --%>
+			<c:if test="${not empty loginMember}">
+				<dt>
+					
+					<span class="id">${loginMember.id}</span>
+				</dt>
+				<dd>
+					<form id="f" action="writeCom.do" method="post">
+						<input type="hidden" name="galleryNo" value="${gallery.galleryNo}"/>
+						<textarea id="com_content" name="content" class="comment"></textarea>
+						<input type="button" value="작성" id="f_btn"/>
+					</form>
+				</dd>
+			</c:if>
+			<%-- 댓글작성 : 로그아웃 --%>
+			<c:if test="${empty loginMember}">
+				<dt>
+					<span class="id">댓글</span>
+				</dt>
+				<dd>
+					<textarea name="content" class="comment disable" readonly>댓글 작성을 위해서는 로그인을 하셔야 합니다.</textarea>
+					<input type="button" value="작성" id="f_btn"/>
+				</dd>
+			</c:if>
+			</dl>
 		</div>
 	</section>
 </body>

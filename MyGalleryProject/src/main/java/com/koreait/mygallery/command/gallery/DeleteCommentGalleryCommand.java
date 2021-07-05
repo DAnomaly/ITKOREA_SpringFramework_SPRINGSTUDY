@@ -1,6 +1,5 @@
 package com.koreait.mygallery.command.gallery;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,27 +10,25 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.koreait.mygallery.dao.GalleryDAO;
-import com.koreait.mygallery.dto.Gallery;
-import com.koreait.mygallery.dto.Member;
+import com.koreait.mygallery.dto.GalleryCom;
 
 @Component
-public class DeleteGalleryCommand implements GalleryCommand{
+public class DeleteCommentGalleryCommand implements GalleryCommand{
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 
-		GalleryDAO dao = sqlSession.getMapper(GalleryDAO.class);
 		Map<String, Object> resultMap = new HashMap<>();
 		StringBuilder sb = new StringBuilder();
 		
+		GalleryDAO dao = sqlSession.getMapper(GalleryDAO.class);
 		Map<String, Object> modelMap = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)modelMap.get("request");
 		long galleryComNo = Long.parseLong(request.getParameter("no"));
-		Gallery gallery = dao.selectOneGallery(galleryComNo);
 		
 		// 계정 검사
-		Member loginMember = (Member)request.getSession().getAttribute("loginMember");
-		if(loginMember == null || !gallery.getId().equals(loginMember.getId())) {
+		GalleryCom galleryCom = dao.selectOneGalleryComment(galleryComNo);
+		if(galleryCom == null || !galleryCom.getId().equals(galleryCom.getId())) {
 			sb.append("<script>");
 			sb.append("alert('허용하지 않는 접근입니다.');");
 			sb.append("history.back();");
@@ -40,14 +37,12 @@ public class DeleteGalleryCommand implements GalleryCommand{
 			return resultMap;
 		}
 		
-		// 갤러리 댓글 삭제
-		dao.deleteGalleryCommentByGalleryNo(gallery.getGalleryNo());
-		
+		// 댓글 삭제
 		// 갤러리 삭제
-		if(dao.deleteGallery(gallery.getGalleryNo()) != 0) {
+		if(dao.deleteGalleryCommentByNo(galleryCom.getGalleryComNo()) != 0) {
 			sb.append("<script>");
 			sb.append("alert('정상적으로 삭제되었습니다.');");
-			sb.append("location.href='/mygallery/';");
+			sb.append("location.href='/mygallery/gallery/viewPage.do?no=" + galleryCom.getGalleryNo() + "';");
 			sb.append("</script>");
 		} else {
 			sb.append("<script>");
@@ -56,19 +51,9 @@ public class DeleteGalleryCommand implements GalleryCommand{
 			sb.append("</script>");
 		}
 		resultMap.put("response", sb.toString());
-		logger.info("갤러리삭제: no=" + gallery.getGalleryNo() + ",title=" + gallery.getTitle());
+		logger.info("갤러리댓글삭제: " + galleryCom.toString() );
 		
-		
-		// 이미지 삭제
-		String path = "resources/archive"; // 파일 경로
-		String realPath = request.getServletContext().getRealPath(path);
-		File image = new File(realPath, gallery.getImage());
-		if(image.exists())
-			if(image.delete())
-				logger.info("이미지삭제: filename=" + gallery.getImage());
-			else
-				logger.info("이미지삭제실패: filename=" + gallery.getImage());
 		return resultMap;
 	}
-
+	
 }

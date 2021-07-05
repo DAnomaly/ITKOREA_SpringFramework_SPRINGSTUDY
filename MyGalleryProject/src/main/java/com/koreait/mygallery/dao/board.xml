@@ -5,7 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.mygallery.dao.BoardDAO">
 
-
-
+	<select id="countBoard" resultType="long" parameterType="java.util.Map">
+		SELECT COUNT(*)
+		  FROM BOARD
+		<if test="c != null">
+		 WHERE ${c} = #{q}
+		</if>
+	</select>
+	
+	<select id="selectListBoard" resultType="com.koreait.mygallery.dto.Board" parameterType="java.util.Map">
+		SELECT B.BOARD_NO AS BOARDNO, B.ID, B.CONTENT, B.POSTDATE, B.IP, B.STATE, B.GROUPNO, B.GROUPORD, B.DEPTH 
+		  FROM (SELECT ROWNUM AS RN, A.BOARD_NO, A.ID, A.CONTENT, A.POSTDATE, A.IP, A.STATE, A.GROUPNO, A.GROUPORD, A.DEPTH
+		          FROM (SELECT BOARD_NO, ID, CONTENT, POSTDATE, IP, STATE, GROUPNO, GROUPORD, DEPTH 
+		                  FROM BOARD
+						<if test="c != null">
+		          	 	 WHERE ${C} = #{q}
+		          	 	</if> 
+		                 ORDER BY GROUPNO DESC, GROUPORD
+		               ) A
+		       ) B
+		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
 
 </mapper>

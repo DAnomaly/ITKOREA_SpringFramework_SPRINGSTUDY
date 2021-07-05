@@ -4,9 +4,11 @@ import java.sql.Date;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @Data
+@ToString
 public class Member {
 	private long memberNo;
 	private String id;
