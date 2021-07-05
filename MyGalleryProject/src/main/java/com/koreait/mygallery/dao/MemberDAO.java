@@ -12,4 +12,5 @@ public interface MemberDAO {
 	public int removeMember(Member member);
 	public int countGalleryByNo(Member member);
 	public int countBoardByNo(Member member);
+	public Member findMember(Member member);
 }

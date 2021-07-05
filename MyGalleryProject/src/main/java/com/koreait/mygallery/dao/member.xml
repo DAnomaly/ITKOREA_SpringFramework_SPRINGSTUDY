@@ -71,4 +71,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE ID = #{id}
 	</select>
 	
+	<select id="findMember" resultType="com.koreait.mygallery.dto.Member" parameterType="com.koreait.mygallery.dto.Member">
+		SELECT MEMBER_NO AS MEMBERNO
+			 , ID
+			 , PW
+			 , NAME
+		 	 , TEL
+		 	 , EMAIL
+			 , ADDRESS
+		 	 , REGDATE
+			 , STATE
+		  FROM MEMBER
+		 WHERE NAME = #{name}
+		   AND EMAIL = #{email}
+		<if test="id != null">
+		   AND ID = #{id}
+		</if>
+	</select>
+	
+	
 </mapper>
