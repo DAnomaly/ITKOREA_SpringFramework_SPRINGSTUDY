@@ -14,9 +14,9 @@ public class PagingUtils {
 	private PagingUtils(){}
 	
 	/**
-	 * 패이지 당 Record의 개수 [기본값:10] 
+	 * 패이지 당 Record의 개수 [기본값:8] 
 	 */
-	private static int recordPerPage = 10;
+	private static int recordPerPage = 8;
 	/**
 	 * 한번에 보여질 페이지 숫자의 개수 [기본값:5]
 	 */

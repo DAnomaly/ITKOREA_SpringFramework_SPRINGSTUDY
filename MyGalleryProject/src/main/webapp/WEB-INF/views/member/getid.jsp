@@ -7,11 +7,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>MyGalleryProject : 아이디/비밀번호찾기</title>
 	<c:if test="${empty findMember}">
-	<script>
-		alert('검색된 아이디가 없습니다.');
-		history.back();
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/member/getid_notfound.js" charset="utf-8"></script>
 	</c:if>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

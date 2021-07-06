@@ -14,7 +14,7 @@ public class Board {
 	private String postdate;
 	private String ip;
 	private int state;
-	private int groupno;
+	private long groupno;
 	private int groupord;
 	private int depth;
 }

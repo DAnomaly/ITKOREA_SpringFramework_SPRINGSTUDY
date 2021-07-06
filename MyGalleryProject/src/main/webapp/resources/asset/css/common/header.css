@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+/* 모든 jsp시트에 적용 */
+@font-face {
+	font-family: "BMJUA";
+	src: url("../../font/BMJUA_otf.otf")
+}
+* {
+	font-family: "BMJUA", serif;
+}
+body {
+	background-color: #E8E4D9;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #000000;
+}
+button, input[type="button"], input[type="submit"] {
+	outline: none;
+	border: none;
+	cursor: pointer;
+}
+/* header */
+header {
+	margin: 0 auto;
+	margin-top: 10px;
+	width: 1080px;
+	box-sizing: border-box;
+}
+header h1 a {
+	color: #006583;
+}
+header .login {
+	float: right;
+}
+header .login a {
+	padding: 2px 8px;
+	color: #01A6BC;
+}
+header nav ul {
+	width: 100%;
+	background-color: #7cbac9;
+	list-style: none;
+	display: flex;
+}
+header nav ul li {
+	font-size: 18px;
+	padding: 8px 12px;
+}
+header li a {
+	color: #E8E4D9;
+}
+header span.id {
+	color: #006583;
+}
+header a:hover {
+	color: #ff6372;
+}

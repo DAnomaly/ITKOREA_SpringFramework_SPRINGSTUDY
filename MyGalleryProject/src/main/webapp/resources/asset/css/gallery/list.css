@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+/* gallery의 list.jsp */
+section {
+	width: 960px;
+	margin: 0 auto;
+}
+section ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+section .search_container {
+	height: 36px;
+	border-bottom: 1px solid #7cbac9;
+}
+section .left {
+	float: left;
+}
+section .left select, section .left input {
+	box-sizing: border-box;
+	padding: 0 8px;
+	height: 28px;
+}
+section .left input[type="button"] {
+	background-color: #b3a197;
+	color: #ffffff;
+}
+section .right { 
+	padding-top : 10px;
+	padding-right: 10px;
+	float: right;
+}
+section .right a {
+	color: #b3a197;
+}
+section .right a:hover, section .left input[type="button"]:hover {
+	color: #ff6372;
+}
+section .list_container {
+	box-sizing: border-box;
+	width: 960px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: left;
+}
+section .list_container img {
+	box-sizing: border-box;
+	width: 200px;
+	height: 300px;
+	object-fit: cover;
+	position: relative;
+}
+section .list_container .outbox {
+	margin: 19px;
+	position: relative;
+}
+section .list_container .text {
+	display: none;
+	position: absolute;
+	box-sizing: border-box;
+	width: 200px;
+	padding: 5px;
+	left: 0;
+	bottom: 5px;
+	background-color: #b3a19780;
+}
+section .list_container .outbox:hover .text {
+	display: block;
+}
+section .paging {
+	text-align: center;
+}
+section .no_result {
+	width: 100%;
+	text-align: center;
+	padding: 45px;
+}
+section .title {
+	color: #e8e4d9;
+}
+section .id {
+	font-size: 14px;
+	color: gray;
+}
+section .hit {
+	color: #ff6372;
+}

@@ -38,6 +38,7 @@ public class SelectListBoardCommand implements BoardCommand {
 		searchMap.put("beginRecord", page.getBeginRecord());
 		searchMap.put("endRecord", page.getEndRecord());
 		List<Board> list = dao.selectListBoard(searchMap);
+		logger.info(list.toString());
 		// paging
 		String path;
 		if(searchMap.get("c") == null) {

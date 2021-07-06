@@ -8,56 +8,10 @@
 	<title>MyGalleryProject : 아이디/비밀번호찾기</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<c:if test="${empty findMember}">
-	<script type="text/javascript">
-		var notfound = true;
-		alert('찾으시는 회원정보가 일치하지 않거나 없습니다.');
-		history.back();
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/member/changepw_notfound.js" charset="utf-8"></script>
 	</c:if>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			fn_key_btn();
-			fn_change_btn();
-		})
-		
-		function fn_key_btn() {
-			$('#key_btn').click(function(){
-				$.ajax({
-					url: 'checkKey.do',
-					type: 'get',
-					data: 'key=' + $('#key').val(),
-					dataType: 'json',
-					success: function(data){
-						if(data.result) {
-							alert('인증에 성공했습니다.');
-							$('#pw').attr('disabled',false);
-							$('#pw1').attr('disabled',false);
-							$('#key').attr('disabled',true);
-							$('#change_btn').attr('disabled',false);
-						} else {
-							alert('올바른 인증번호가 아닙니다.');
-						}
-					}
-				})
-			})
-		}
-		
-		function fn_change_btn() {
-			$('#change_btn').click(function(){
-				if($('#pw').val() == '') {
-					alert('비밀번호를 입력해주세요.');
-					$('#pw').focus();
-					return;
-				}
-				if($('#pw1').val() != $('#pw').val()){
-					alert('비밀번호를 다시 확인해 주세요.');
-					$('#pw1').focus();
-					return;
-				}
-				$('#f').submit();
-			})
-		}
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/member/changepw.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		  FROM BOARD
 		<if test="c != null">
-		 WHERE ${c} = #{q}
+		 WHERE ${c} LIKE '%' || #{q} || '%'
 		</if>
 	</select>
 	
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		          FROM (SELECT BOARD_NO, ID, CONTENT, POSTDATE, IP, STATE, GROUPNO, GROUPORD, DEPTH 
 		                  FROM BOARD
 						<if test="c != null">
-		          	 	 WHERE ${C} = #{q}
+		          	 	 WHERE ${c} LIKE '%' || #{q} || '%'
 		          	 	</if> 
 		                 ORDER BY GROUPNO DESC, GROUPORD
 		               ) A
@@ -44,5 +44,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , (SELECT COUNT(*) FROM BOARD WHERE GROUPNO = #{groupno})
 		     , 1)
 	</insert>
+
+	<update id="deleteBoard" parameterType="com.koreait.mygallery.dto.Board">
+		UPDATE BOARD
+		   SET STATE = -1
+		 WHERE BOARD_NO = #{boardNo}
+		   AND ID = #{id}
+	</update>
 
 </mapper>

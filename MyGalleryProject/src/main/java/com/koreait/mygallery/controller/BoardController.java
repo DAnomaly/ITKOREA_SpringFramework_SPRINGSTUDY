@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.mygallery.command.board.DeleteBoardCommand;
 import com.koreait.mygallery.command.board.InsertBoardCommand;
 import com.koreait.mygallery.command.board.InsertCommentBoardCommand;
 import com.koreait.mygallery.command.board.SelectListBoardCommand;
@@ -21,17 +22,20 @@ public class BoardController {
 	private SelectListBoardCommand selectListBoardCommand;
 	private InsertBoardCommand insertBoardCommand;
 	private InsertCommentBoardCommand insertCommentBoardCommand;
+	private DeleteBoardCommand deleteBoardCommand;
 	
 	@Autowired
 	public BoardController(
 			SqlSession sqlSession, 
 			SelectListBoardCommand selectListBoardCommand,
 			InsertBoardCommand insertBoardCommand, 
-			InsertCommentBoardCommand insertCommentBoardCommand) {
+			InsertCommentBoardCommand insertCommentBoardCommand,
+			DeleteBoardCommand deleteBoardCommand) {
 		this.sqlSession = sqlSession;
 		this.selectListBoardCommand = selectListBoardCommand;
 		this.insertBoardCommand = insertBoardCommand;
 		this.insertCommentBoardCommand = insertCommentBoardCommand;
+		this.deleteBoardCommand = deleteBoardCommand;
 	}
 
 	/**
@@ -84,6 +88,23 @@ public class BoardController {
 			HttpServletRequest request) {
 		model.addAttribute("request",request);
 		insertCommentBoardCommand.execute(sqlSession, model);
+		return "redirect:list.do";
+	}
+	
+	/**
+	 * 개시글/답글 삭제
+	 * 
+	 * @see DeleteBoardCommand
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="delete.do")
+	public String delete(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request",request);
+		deleteBoardCommand.execute(sqlSession, model);
 		return "redirect:list.do";
 	}
 }

@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 		  FROM GALLERY
 		<if test="c != null">
-		 WHERE ${c} = #{q}
+		 WHERE ${c} LIKE '%' || #{q} || '%'
 		</if>
 	</select>
 
@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		          FROM (SELECT ROWNUM AS RN, GALLERY_NO, ID, TITLE, CONTENT, POSTDATE, LASTMODIFY, IP, HIT, IMAGE
 		          	 	  FROM GALLERY
 						<if test="c != null">
-		          	 	 WHERE ${C} = #{q}
+		          	 	 WHERE ${c} LIKE '%' || #{q} || '%'
 		          	 	</if> 
 		          	 	 ORDER BY POSTDATE DESC
 		          	   ) A 

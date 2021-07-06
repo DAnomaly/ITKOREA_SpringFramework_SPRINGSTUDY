@@ -8,76 +8,10 @@
 	<title>MyGalleryProject : 마이페이지</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<c:if test="${empty loginMember}">
-	<script>
-		alert('로그인이 필요한 서비스입니다.');
-		location.href='loginView.do';
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/common/loginCheck.js" charset="utf-8"></script>
 	</c:if>
-	<script>
-		var change_pw = false;
-		$(document).ready(function(){
-			fn_ready();
-			fn_pw_btn();
-			fn_edit_btn();
-			fn_remove_btn();
-		})
-		function fn_ready(){
-			$('.pw_box').hide();
-		}
-		function fn_pw_btn(){
-			$('#pw_btn').click(function(){
-				change_pw = true;
-				$('.pw_box').show();
-				$('#pw').attr('disabled',false);
-				$('#pw1').attr('disabled',false);
-				$('#pw_btn').parent().parent().hide();
-			})
-		}
-		function fn_edit_btn(){
-			$('#edit_btn').click(function(){
-				if(change_pw){
-					if($('#pw').val() == ''){
-						alert('비밀번호를 입력하세요.');
-						return;
-					}
-					if($('#pw1').val() != $('#pw').val()) {
-						alert('비밀번호를 다시 확인하세요.');
-						return;
-					}
-				}
-				if($('#name').val() == ''){
-					alert('이름을 입력하세요.');
-					return;
-				}
-				var member = new Object();
-				member.memberNo = $('#no').val();
-				if(change_pw)
-					member.pw = $('#pw').val();
-				member.name = $('#name').val();
-				member.address = $('#address').val();
-				$.ajax({
-					url: 'edit.do',
-					type: 'post',
-					data: JSON.stringify(member),
-					contentType: 'application/json',
-					dataType: 'json',
-					success: function(data){
-						if(data.result){
-							alert('회원정보가 정상적으로 수정되었습니다.');
-							location.href='mypage.do';
-						} else {
-							alert('정보 수정중 오류가 발생했습니다.');
-						}
-					}
-				})
-			})
-		}
-		function fn_remove_btn(){
-			$('#remove_btn').click(function(){
-				location.href="removePage.do";
-			})
-		}
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/member/mypage.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

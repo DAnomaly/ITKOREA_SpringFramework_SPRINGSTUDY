@@ -7,32 +7,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>MyGalleryProject : ${gallery.title}</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script>
-		$(document).ready(function(){
-			fn_f_submit();
-		})
-		function fn_f_submit(){
-			$('#f_btn').click(function(){
-				$('#f').submit();
-			});
-			$('#f').submit(function(event){
-				if($('#com_content').val() == ''){
-					alert('댓글을 작성해 주세요.');
-					event.preventDefault();
-					return false;
-				}
-				return true;
-			});
-		}
-		function fn_del(no){
-			if(confirm('정말로 삭제하시겠습니까?'))
-				location.href='del.do?no=' + no;
-		}
-		function fn_com_del(no){
-			if(confirm('정말로 삭제하시겠습니까?'))
-				location.href="delCom.do?no=" + no;
-		}
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/gallery/view.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

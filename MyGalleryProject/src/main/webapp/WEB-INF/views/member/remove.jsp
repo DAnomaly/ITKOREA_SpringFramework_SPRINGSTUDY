@@ -6,6 +6,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>MyGalleryProject : 회원탈퇴</title>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<h1>회원 탈퇴</h1>
@@ -19,6 +20,5 @@
 			<input type="button" id="no" value="아니요" onclick="history.back()"/>
 		</div>
 	</div>
-	
 </body>
 </html>

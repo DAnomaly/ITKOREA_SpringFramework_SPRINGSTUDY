@@ -8,38 +8,10 @@
 	<title>MyGalleryProject : 갤러리 작성</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<c:if test="${empty loginMember}">
-	<script>
-		alert('로그인이 필요한 서비스입니다.');
-		location.href='/mygallery/member/loginView.do';
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/common/loginCheck.js" charset="utf-8"></script>
 	</c:if>
-	<script>
-		$(document).ready(function(){
-			fn_f_submit()
-		})
-		function fn_f_submit(){
-			// 버튼 클릭시 폼 작동
-			$('#f_btn').click(function(){
-				$('#f').submit();
-			});
-			// 폼 작동
-			$('#f').submit(function(event){
-				if($('#title').val() == ''){
-					alert('제목은 필수입니다.');
-					$('#title').focus();
-					event.preventDefault();
-					return false;
-				}
-				if($('#image').val() == ''){
-					alert('이미지는 필수입니다.');
-					$('#image').focus();
-					event.preventDefault();
-					return false;
-				}
-				return true;
-			});
-		}
-	</script>
+	<script type="text/javascript" src="/mygallery/resources/asset/js/gallery/write.js" charset="utf-8"></script>
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

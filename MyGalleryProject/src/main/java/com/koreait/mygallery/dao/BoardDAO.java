@@ -11,4 +11,5 @@ public interface BoardDAO {
 	public List<Board> selectListBoard(Map<String, Object> map);
 	public int insertNewBoard(Board board);
 	public int insertCommentBoard(Board board);
+	public int deleteBoard(Board board);
 }
