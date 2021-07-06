@@ -89,5 +89,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 	</select>
 	
-	
+	<update id="changePw" parameterType="com.koreait.mygallery.dto.Member">
+		UPDATE MEMBER
+		   SET PW = #{pw}
+		 WHERE MEMBER_NO = #{memberNo}
+	</update>
 </mapper>

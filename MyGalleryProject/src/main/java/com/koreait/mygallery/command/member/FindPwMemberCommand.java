@@ -7,6 +7,8 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,11 @@ public class FindPwMemberCommand implements MemberCommand{
 		model.addAttribute("findMember", findMember);
 		if(findMember == null)
 			return null;
+
+		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
+		HttpSession session = request.getSession();
 		String key = SecurityUtils.createKey(8);
-		model.addAttribute("key", key);
+		session.setAttribute("key", key);
 		
 		sendEmail(member.getEmail(), key);
 		return null;

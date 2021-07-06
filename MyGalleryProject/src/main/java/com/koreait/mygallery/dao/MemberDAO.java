@@ -13,4 +13,5 @@ public interface MemberDAO {
 	public int countGalleryByNo(Member member);
 	public int countBoardByNo(Member member);
 	public Member findMember(Member member);
+	public int changePw(Member member);
 }

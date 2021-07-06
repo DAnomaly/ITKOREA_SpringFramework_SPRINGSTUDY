@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.mygallery.dao.BoardDAO">
 
-	<select id="countBoard" resultType="long" parameterType="java.util.Map">
+	<select id="countBoard" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*)
 		  FROM BOARD
 		<if test="c != null">
@@ -26,5 +26,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
+
+	<insert id="insertNewBoard" parameterType="com.koreait.mygallery.dto.Board">
+		INSERT INTO BOARD VALUES
+		(BOARD_SEQ.NEXTVAL, #{id}, #{content}, SYSDATE, #{ip}, 0, BOARD_SEQ.CURRVAL, 0, 0)
+	</insert>
+	
+	<insert id="insertCommentBoard" parameterType="com.koreait.mygallery.dto.Board">
+		INSERT INTO BOARD 
+		VALUES (BOARD_SEQ.NEXTVAL
+		     , #{id}
+		     , #{content}
+		     , SYSDATE
+		     , #{ip}
+		     , 0
+		     , #{groupno}
+		     , (SELECT COUNT(*) FROM BOARD WHERE GROUPNO = #{groupno})
+		     , 1)
+	</insert>
 
 </mapper>

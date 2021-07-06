@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
@@ -16,6 +17,7 @@ import com.koreait.mygallery.util.SecurityUtils;
 /**
  * 회원 정보 수정 커맨드
  * 
+ * @see MemberController
  * @author 박세환
  */
 @Component

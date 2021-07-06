@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.mygallery.command.member.ChangePwMemberCommand;
 import com.koreait.mygallery.command.member.CheckEmailMemberCommand;
 import com.koreait.mygallery.command.member.CheckIdMemberCommand;
+import com.koreait.mygallery.command.member.CheckKeyMemberCommand;
 import com.koreait.mygallery.command.member.EditMemberCommand;
+import com.koreait.mygallery.command.member.FindIdMemberCommand;
+import com.koreait.mygallery.command.member.FindPwMemberCommand;
 import com.koreait.mygallery.command.member.JoinMemberCommand;
 import com.koreait.mygallery.command.member.LoginMemberCommand;
 import com.koreait.mygallery.command.member.LogoutMemberCommand;
@@ -43,6 +47,10 @@ public class MemberController {
 	private EditMemberCommand editMemberCommand;
 	private RemovePageMemberCommand removePageMemberCommand;
 	private RemoveMemberCommand removeMemberCommand;
+	private FindIdMemberCommand findIdMemberCommand;
+	private FindPwMemberCommand findPwMemberCommand;
+	private CheckKeyMemberCommand checkKeyMemberCommand;
+	private ChangePwMemberCommand changePwMemberCommand;
 	
 	@Autowired
 	public MemberController(
@@ -54,7 +62,11 @@ public class MemberController {
 			CheckEmailMemberCommand checkEmailMemberCommand,
 			EditMemberCommand editMemberCommand,
 			RemovePageMemberCommand removePageMemberCommand,
-			RemoveMemberCommand removeMemberCommand) {
+			RemoveMemberCommand removeMemberCommand,
+			FindIdMemberCommand findIdMemberCommand,
+			FindPwMemberCommand findPwMemberCommand,
+			CheckKeyMemberCommand checkKeyMemberCommand,
+			ChangePwMemberCommand changePwMemberCommand) {
 		this.sqlSession = sqlSession;
 		this.joinMemberCommand = joinMemberCommand;
 		this.loginMemberCommand = loginMemberCommand;
@@ -64,6 +76,10 @@ public class MemberController {
 		this.editMemberCommand = editMemberCommand;
 		this.removePageMemberCommand = removePageMemberCommand;
 		this.removeMemberCommand = removeMemberCommand;
+		this.findIdMemberCommand = findIdMemberCommand;
+		this.findPwMemberCommand = findPwMemberCommand;
+		this.checkKeyMemberCommand = checkKeyMemberCommand;
+		this.changePwMemberCommand = changePwMemberCommand;
 	}
 
 	/**
@@ -119,13 +135,40 @@ public class MemberController {
 		return "member/find";
 	}
 	
+	/**
+	 * 아이디 찾기 페이지
+	 * 
+	 * @see FindIdMemberCommand
+	 * @param model
+	 * @param member
+	 * @return
+	 */
 	@RequestMapping(value="getidView.do")
-	public String getIdPage() {
+	public String getIdPage(
+			Model model,
+			Member member) {
+		model.addAttribute("member", member);
+		findIdMemberCommand.execute(sqlSession, model);
 		return "member/getid";
 	}
 	
+	/**
+	 * 비밀번호 변경 페이지
+	 * 
+	 * @see ChangePwMemberCommand
+	 * @param model
+	 * @param member
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="changepwView.do")
-	public String changepwPage() {
+	public String changepwPage(
+			Model model,
+			Member member,
+			HttpServletRequest request) {
+		model.addAttribute("member", member);
+		model.addAttribute("request", request);
+		findPwMemberCommand.execute(sqlSession, model);
 		return "member/changepw";
 	}
 	
@@ -244,7 +287,9 @@ public class MemberController {
 					produces="application/json; charset=UTF-8")
 	public Map<String, Object> edit(
 			Model model,
+			HttpServletRequest request,
 			@RequestBody Member member){
+		model.addAttribute("request", request);
 		model.addAttribute("member", member);
 		return editMemberCommand.execute(sqlSession, model);
 	}
@@ -268,5 +313,34 @@ public class MemberController {
 		return (String)removeMemberCommand.execute(sqlSession, model).get("response");
 	}
 	
+	/**
+	 * 키 인증 (비밀번호 변경)
+	 * 
+	 * @see CheckKeyMemberCommand
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="checkKey.do",
+					method=RequestMethod.GET,
+					produces="application/json; charset=UTF-8")
+	public Map<String, Object> checkKey(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return checkKeyMemberCommand.execute(sqlSession, model);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="changePw.do",
+					method=RequestMethod.POST,
+					produces="text/html; charset=UTF-8")
+	public String changePw(
+			Model model,
+			Member member) {
+		model.addAttribute("member", member);
+		return (String)changePwMemberCommand.execute(sqlSession, model).get("response"); 
+	}
 }
 
