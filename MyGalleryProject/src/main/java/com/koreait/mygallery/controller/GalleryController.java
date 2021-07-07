@@ -1,5 +1,7 @@
 package com.koreait.mygallery.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +16,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.koreait.mygallery.command.gallery.DeleteCommentGalleryCommand;
 import com.koreait.mygallery.command.gallery.DeleteGalleryCommand;
 import com.koreait.mygallery.command.gallery.SelectListGalleryCommand;
+import com.koreait.mygallery.command.gallery.SelectOneCommentGalleryCommand;
 import com.koreait.mygallery.command.gallery.SelectOneGalleryCommand;
+import com.koreait.mygallery.command.gallery.UpdateCommentGalleryCommand;
 import com.koreait.mygallery.command.gallery.UpdateGalleryCommand;
 import com.koreait.mygallery.command.gallery.WriteCommentGalleryCommand;
 import com.koreait.mygallery.command.gallery.WriteGalleryCommand;
@@ -26,24 +30,33 @@ public class GalleryController {
 	private SqlSession sqlSession;
 	private SelectListGalleryCommand selectListGalleryCommand;
 	private SelectOneGalleryCommand selectOneGalleryCommand;
+	private SelectOneCommentGalleryCommand selectOneCommentGalleryCommand;
 	private WriteGalleryCommand writeGalleryCommand;
 	private UpdateGalleryCommand updateGalleryCommand;
+	private UpdateCommentGalleryCommand updateCommentGalleryCommand;
 	private DeleteGalleryCommand deleteGalleryCommand;
 	private DeleteCommentGalleryCommand deleteCommentGalleryCommand;
 	private WriteCommentGalleryCommand writeCommentGalleryCommand;
 	
 	@Autowired
-	public GalleryController(SqlSession sqlSession, SelectListGalleryCommand selectListGalleryCommand,
-			SelectOneGalleryCommand selectOneGalleryCommand, WriteGalleryCommand writeGalleryCommand,
-			UpdateGalleryCommand updateGalleryCommand, DeleteGalleryCommand deleteGalleryCommand,
+	public GalleryController(SqlSession sqlSession, 
+			SelectListGalleryCommand selectListGalleryCommand,
+			SelectOneGalleryCommand selectOneGalleryCommand, 
+			SelectOneCommentGalleryCommand selectOneCommentGalleryCommand,
+			WriteGalleryCommand writeGalleryCommand,
+			UpdateGalleryCommand updateGalleryCommand, 
+			UpdateCommentGalleryCommand updateCommentGalleryCommand,
+			DeleteGalleryCommand deleteGalleryCommand,
 			DeleteCommentGalleryCommand deleteCommentGalleryCommand,
 			WriteCommentGalleryCommand writeCommentGalleryCommand) {
 		super();
 		this.sqlSession = sqlSession;
 		this.selectListGalleryCommand = selectListGalleryCommand;
 		this.selectOneGalleryCommand = selectOneGalleryCommand;
+		this.selectOneCommentGalleryCommand = selectOneCommentGalleryCommand;
 		this.writeGalleryCommand = writeGalleryCommand;
 		this.updateGalleryCommand = updateGalleryCommand;
+		this.updateCommentGalleryCommand = updateCommentGalleryCommand;
 		this.deleteGalleryCommand = deleteGalleryCommand;
 		this.deleteCommentGalleryCommand = deleteCommentGalleryCommand;
 		this.writeCommentGalleryCommand = writeCommentGalleryCommand;
@@ -156,6 +169,42 @@ public class GalleryController {
 			HttpServletRequest request) {
 		model.addAttribute("request", request);
 		return (String)deleteGalleryCommand.execute(sqlSession, model).get("response");
+	}
+
+	/**
+	 * 갤러리 댓글 수정 페이지
+	 * 
+	 * @see SelectOneCommentGalleryCommand
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="editComPage.do")
+	public String editComPage(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		selectOneCommentGalleryCommand.execute(sqlSession, model);
+		return "gallery/editCom";
+	}
+	
+	/**
+	 * 갤러리 댓글 수정
+	 * 
+	 * @see UpdateGalleryCommand
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="editCom.do",
+					method=RequestMethod.POST,
+					produces="application/json; charset=UTF-8")
+	public Map<String, Object> editCom(
+			Model model,
+			HttpServletRequest request) {
+		model.addAttribute("request", request);
+		return updateCommentGalleryCommand.execute(sqlSession, model);
 	}
 	
 	/**

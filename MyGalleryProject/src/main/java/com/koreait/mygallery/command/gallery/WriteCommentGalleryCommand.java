@@ -29,7 +29,7 @@ public class WriteCommentGalleryCommand implements GalleryCommand{
 		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
 		long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
 		String id = ((Member)request.getSession().getAttribute("loginMember")).getId();
-		String content = request.getParameter("content");
+		String content = request.getParameter("content").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 		String ip = SecurityUtils.getIp(request);
 		
 		GalleryCom galleryCom = new GalleryCom();

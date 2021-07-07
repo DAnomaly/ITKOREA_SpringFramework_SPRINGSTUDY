@@ -32,8 +32,8 @@ public class WriteGalleryCommand implements GalleryCommand {
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest)model.asMap().get("request");
 		HttpSession session = request.getSession();
 		String id = ((Member)session.getAttribute("loginMember")).getId();
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String title = request.getParameter("title").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		String content = request.getParameter("content").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 		String ip = SecurityUtils.getIp(request);
 		String image = getFilename(request, "image");
 		

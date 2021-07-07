@@ -9,7 +9,9 @@ public interface BoardDAO {
 
 	public int countBoard(Map<String, Object> map);
 	public List<Board> selectListBoard(Map<String, Object> map);
+	public Board selectOneBoard(long no);
 	public int insertNewBoard(Board board);
 	public int insertCommentBoard(Board board);
 	public int deleteBoard(Board board);
+	public int updateBoard(Board board);
 }

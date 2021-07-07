@@ -1,8 +1,10 @@
 package com.koreait.mygallery.command.board;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
@@ -12,31 +14,33 @@ import com.koreait.mygallery.controller.BoardController;
 import com.koreait.mygallery.dao.BoardDAO;
 import com.koreait.mygallery.dto.Board;
 import com.koreait.mygallery.dto.Member;
-import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * Board Table에 댓글을 추가합니다.
+ * 선택한 Board의 내용을 수정합니다.
  * 
  * @see BoardController
  * @author 박세환
  */
 @Component
-public class InsertCommentBoardCommand implements BoardCommand{
+public class UpdateBoardCommand implements BoardCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
-		Map<String, Object> modelMap = model.asMap();
-		HttpServletRequest request = (HttpServletRequest)modelMap.get("request");
+		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
+		HttpSession session = request.getSession();
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		Map<String, Object> resultMap = new HashMap<>();
+		
 		Board board = new Board();
-		board.setId(((Member)request.getSession().getAttribute("loginMember")).getId());
+		board.setBoardNo(Long.parseLong(request.getParameter("boardNo")));
 		String content = request.getParameter("content").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 		board.setContent(content);
-		board.setIp(SecurityUtils.getIp(request));
-		board.setGroupno(Integer.parseInt(request.getParameter("groupno")));
+		board.setId(((Member)session.getAttribute("loginMember")).getId());
 		
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		dao.insertCommentBoard(board);
-		return null;
+		int result = dao.updateBoard(board);
+		resultMap.put("result",result > 0);
+		
+		return resultMap;
 	}
 	
 }

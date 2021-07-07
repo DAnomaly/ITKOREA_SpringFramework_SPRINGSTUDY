@@ -49,6 +49,7 @@
 					<span class="id">${comment.id}</span>
 					<span class="postdate">${comment.postdate}
 					<c:if test="${loginMember.id == gallery.id}">
+						<a href="javascript:openEditPage(${comment.galleryComNo});">수정</a>
 						<a href="javascript:fn_com_del(${comment.galleryComNo});">삭제</a>
 					</c:if>
 					</span>

@@ -22,3 +22,9 @@ function insert_comment(f) {
 function show_com(id) {
 	$(id).toggle();
 }
+function openEditPage(no) {
+    var url = "editPage.do?no=" + no;
+    var name = "editPage";
+    var option = "width = 500, height = 150, top = 100, left = 200, location = no"
+    var newWindow = window.open(url, name, option);
+}

@@ -57,6 +57,7 @@
 							<a href="javascript:show_com('#insertcom_${board.boardNo}');">답글</a>
 							</c:if>
 							<c:if test="${board.id == loginMember.id}">
+							<a href="javascript:openEditPage(${board.boardNo})">수정</a>
 							<a href="delete.do?no=${board.boardNo}">삭제</a>
 							</c:if>
 						</dt>

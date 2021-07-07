@@ -78,7 +78,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , IP
 		  FROM GALLERY_COM
 		 WHERE GALLERY_COM_NO = ${_parameter}
-	
 	</select>
 
 	<update id="updateGallery" parameterType="com.koreait.mygallery.dto.Gallery">
@@ -91,6 +90,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , IMAGE = #{image}
 		</if>
 		 WHERE GALLERY_NO = #{galleryNo}
+	</update>
+	
+	<update id="updateCommentGallery" parameterType="com.koreait.mygallery.dto.GalleryCom">
+		UPDATE GALLERY_COM
+		   SET CONTENT = #{content}
+		 WHERE GALLERY_COM_NO = #{galleryComNo}
+		   AND ID = #{id}
 	</update>
 	
 	<delete id="deleteGallery">

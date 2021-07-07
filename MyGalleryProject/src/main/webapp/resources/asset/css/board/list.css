@@ -76,4 +76,18 @@ section #search_f input[type="button"], section #search_f input[type="submit"] {
 	background-color: #b3a197;
 	color: #ffffff;
 }
-
+section .paging {
+	text-align: center;
+}
+section .paging a {
+	font-size: 18px;
+	color: #00658380;
+	cursor: default;
+}
+section .paging a[href] {
+	color: #006583;
+	cursor: pointer;
+}
+section .paging a.now-page {
+	color: #ff6372;
+}

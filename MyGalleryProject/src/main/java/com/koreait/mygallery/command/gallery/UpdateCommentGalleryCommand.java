@@ -1,6 +1,6 @@
 package com.koreait.mygallery.command.gallery;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,40 +12,35 @@ import org.springframework.ui.Model;
 
 import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
-import com.koreait.mygallery.dto.Gallery;
 import com.koreait.mygallery.dto.GalleryCom;
 import com.koreait.mygallery.dto.Member;
 
 /**
- * Gallery와 GalleryCom을 가져옵니다.<br>
- * <br>
- * 작성자 아닐경우 Hit를 증가시킵니다.
- *  
+ * 요청한 Gallery의 댓글을 수정합니다.
+ * 
  * @see GalleryController
- * @author ITSC
+ * @author 박세환
  */
 @Component
-public class SelectOneGalleryCommand implements GalleryCommand {
+public class UpdateCommentGalleryCommand implements GalleryCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
 		HttpSession session = request.getSession();
-		Member loginMember = (Member)session.getAttribute("loginMember");
-		long no = Long.parseLong(request.getParameter("no"));
-		
 		GalleryDAO dao = sqlSession.getMapper(GalleryDAO.class);
-		// 갤러리 불러오기
-		Gallery gallery = dao.selectOneGallery(no);
-		model.addAttribute("gallery", gallery);
-		// 조회수 증가
-		if((loginMember != null && loginMember.getId().equals(gallery.getId())) == false)
-			dao.updateGalleryHit(no);
-		// 댓글 불러오기
-		List<GalleryCom> comments = dao.selectGalleryComment(no);
-		model.addAttribute("comments", comments);
+		Map<String, Object> resultMap = new HashMap<>();
 		
-		return null;
+		GalleryCom galleryCom = new GalleryCom();
+		galleryCom.setGalleryComNo(Long.parseLong(request.getParameter("galleryComNo")));
+		String content = request.getParameter("content").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		galleryCom.setContent(content);
+		galleryCom.setId(((Member)session.getAttribute("loginMember")).getId());
+		
+		int result = dao.updateCommentGallery(galleryCom);
+		resultMap.put("result",result > 0);
+		
+		return resultMap;
 	}
 
 }

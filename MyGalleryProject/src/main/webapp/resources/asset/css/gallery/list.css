@@ -70,9 +70,6 @@ section .list_container .text {
 section .list_container .outbox:hover .text {
 	display: block;
 }
-section .paging {
-	text-align: center;
-}
 section .no_result {
 	width: 100%;
 	text-align: center;
@@ -86,5 +83,21 @@ section .id {
 	color: gray;
 }
 section .hit {
+	color: #ff6372;
+}
+/* paging */
+section .paging {
+	text-align: center;
+}
+section .paging a {
+	font-size: 18px;
+	color: #00658380;
+	cursor: default;
+}
+section .paging a[href] {
+	color: #006583;
+	cursor: pointer;
+}
+section .paging a.now-page {
 	color: #ff6372;
 }

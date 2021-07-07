@@ -29,8 +29,8 @@ public class UpdateGalleryCommand implements GalleryCommand {
 		
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest)model.asMap().get("request");
 		long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String title = request.getParameter("title").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		String content = request.getParameter("content").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 		String ip = SecurityUtils.getIp(request);
 		String image = changeImage(request, "image1", "image2");
 		

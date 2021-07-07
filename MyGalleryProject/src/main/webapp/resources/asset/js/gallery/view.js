@@ -22,3 +22,9 @@ function fn_com_del(no){
 	if(confirm('정말로 삭제하시겠습니까?'))
 		location.href="delCom.do?no=" + no;
 }
+function openEditPage(no) {
+    var url = "editComPage.do?no=" + no;
+    var name = "editComPage";
+    var option = "width = 500, height = 150, top = 100, left = 200, location = no"
+    var newWindow = window.open(url, name, option);
+}

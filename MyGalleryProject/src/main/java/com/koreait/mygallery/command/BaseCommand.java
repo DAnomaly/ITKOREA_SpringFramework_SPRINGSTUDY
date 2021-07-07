@@ -21,7 +21,7 @@ public interface BaseCommand {
 	 * 필요로 하지 않을 경우에는 null을 반환합니다.<br>
 	 * <br>
 	 * &#64;ResponseBody Controller가 text/html; 형식으로 반환할 경우<br>
-	 * Map&lt;String, Object&gt;에 key="response", value=[반환할 text/html;]을 put메소드를 통해 적용 뒤 반환합니다. 
+	 * Map&lt;String, Object&gt;에 key="response", value=[반환할 text/html;]을 put()메소드를 통해 적용 뒤 반환합니다. 
 	 * 
 	 * @param sqlSession
 	 * @param model

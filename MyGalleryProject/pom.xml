@@ -6,7 +6,7 @@
 	<artifactId>mygallery</artifactId>
 	<name>MyGalleryProject</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>BETA01</version>
 	<!-- SRPING : 5.1.4.RELEASE > properties -->
 	<properties>
 		<java-version>1.8</java-version>

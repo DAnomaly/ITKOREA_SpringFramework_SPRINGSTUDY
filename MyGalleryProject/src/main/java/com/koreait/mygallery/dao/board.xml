@@ -26,6 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		       ) B
 		 WHERE B.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
+	
+	<select id="selectOneBoard" resultType="com.koreait.mygallery.dto.Board">
+		SELECT BOARD_NO AS BOARDNO, ID, CONTENT, POSTDATE, IP, STATE, GROUPNO, GROUPORD, DEPTH 
+		  FROM BOARD
+		 WHERE BOARD_NO = #{no} 
+	</select>
 
 	<insert id="insertNewBoard" parameterType="com.koreait.mygallery.dto.Board">
 		INSERT INTO BOARD VALUES
@@ -44,6 +50,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     , (SELECT COUNT(*) FROM BOARD WHERE GROUPNO = #{groupno})
 		     , 1)
 	</insert>
+	
+	<update id="updateBoard" parameterType="com.koreait.mygallery.dto.Board">
+		UPDATE BOARD
+		   SET CONTENT = #{content}
+		 WHERE BOARD_NO = #{boardNo}
+		   AND ID = #{id}
+	</update>
 
 	<update id="deleteBoard" parameterType="com.koreait.mygallery.dto.Board">
 		UPDATE BOARD
