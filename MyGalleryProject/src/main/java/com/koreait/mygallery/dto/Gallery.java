@@ -5,6 +5,11 @@ import java.sql.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * GALLERY TABLE의 DTO
+ * 
+ * @author 박세환
+ */
 @NoArgsConstructor
 @Data
 public class Gallery {

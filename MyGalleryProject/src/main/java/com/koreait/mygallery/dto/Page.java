@@ -1,7 +1,15 @@
 package com.koreait.mygallery.dto;
 
+import com.koreait.mygallery.util.PagingUtils;
+
 import lombok.Data;
 
+/**
+ * Paging 작업을 위한 DTO
+ * 
+ * @see PagingUtils
+ * @author 박세환
+ */
 @Data
 public class Page {
 	private int page;

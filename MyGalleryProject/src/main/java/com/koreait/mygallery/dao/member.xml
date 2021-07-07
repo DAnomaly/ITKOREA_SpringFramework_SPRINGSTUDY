@@ -5,7 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.mygallery.dao.MemberDAO">
 
-
 	<select id="loginMember" resultType="com.koreait.mygallery.dto.Member" parameterType="com.koreait.mygallery.dto.Member">
 		SELECT MEMBER_NO AS MEMBERNO
 			 , ID

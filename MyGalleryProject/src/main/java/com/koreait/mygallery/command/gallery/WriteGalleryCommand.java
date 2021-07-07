@@ -19,7 +19,7 @@ import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * 갤러리 등록 커맨드
+ * 새로운 Gallery를 등록합니다.
  * 
  * @see GalleryController
  * @author 박세환

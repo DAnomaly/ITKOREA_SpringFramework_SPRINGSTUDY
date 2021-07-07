@@ -9,10 +9,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.BoardController;
 import com.koreait.mygallery.dao.BoardDAO;
 import com.koreait.mygallery.dto.Board;
 import com.koreait.mygallery.dto.Member;
 
+/**
+ * 개시글을 삭제 처리합니다.<br>
+ * (보드 테이블의 STATUS를 -1로 변경합니다.)
+ * 
+ * @see BoardController
+ * @author 박세환
+ */
 @Component
 public class DeleteBoardCommand implements BoardCommand {
 

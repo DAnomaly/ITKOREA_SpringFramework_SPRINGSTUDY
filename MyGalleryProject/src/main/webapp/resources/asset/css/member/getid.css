@@ -1,1 +1,29 @@
 @charset "UTF-8";
+section * {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+section {
+	margin: 0 auto;
+	padding: 10px;
+	width: 460px;
+	box-sizing: border-box;
+	background-color: #fffa;
+	border: 1px solid #b3a197;
+}
+section p {
+	margin: 5px 10px;
+	color: #006583;
+}
+section .id {
+	color: #000;
+	font-weight: bold;
+}
+section input[type="button"] {
+	margin-top: 8px;
+	background-color: #b3a197a0;
+	padding: 5px 10px;
+	border-radius: 3px;
+	color: #006583;
+}

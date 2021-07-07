@@ -7,12 +7,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 
 /**
- * 아이디 중복 여부를 판단하는 커맨드
- * 
+ * 아이디 중복 여부를 판단합니다.<br>
+ * 아이디 사용이 가능할 경우 JSON데이터(result:ture)를 반환할 수 있게 합니다.
+ *
+ * @see MemberController
  * @author 박세환
  */
 @Component

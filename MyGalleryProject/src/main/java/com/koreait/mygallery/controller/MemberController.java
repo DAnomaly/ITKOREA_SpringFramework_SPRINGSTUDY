@@ -314,7 +314,7 @@ public class MemberController {
 	}
 	
 	/**
-	 * 키 인증 (비밀번호 변경)
+	 * 키 인증 (비밀번호 찾기)
 	 * 
 	 * @see CheckKeyMemberCommand
 	 * @param model
@@ -332,6 +332,13 @@ public class MemberController {
 		return checkKeyMemberCommand.execute(sqlSession, model);
 	}
 	
+	/**
+	 * 비밀번호 변경 (비밀번호 찾기)
+	 * 
+	 * @param model
+	 * @param member
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="changePw.do",
 					method=RequestMethod.POST,

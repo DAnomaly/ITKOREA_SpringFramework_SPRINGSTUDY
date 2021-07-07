@@ -12,6 +12,7 @@
 	</c:if>
 	<script type="text/javascript" src="/mygallery/resources/asset/js/member/mypage.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/member/mypage.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
@@ -74,9 +75,15 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
-			<input type="button" value="회원정보수정" id="edit_btn"/>
-			<input type="button" value="회원탈퇴" id="remove_btn"/>		
+				<tfoot>
+					<tr>
+						<td colspan="2">
+							<input type="button" value="회원정보수정" id="edit_btn"/>
+							<input type="button" value="회원탈퇴" id="remove_btn"/>
+						</td>
+					</tr>
+				</tfoot>
+			</table>		
 		</form>
 	</section>
 </body>

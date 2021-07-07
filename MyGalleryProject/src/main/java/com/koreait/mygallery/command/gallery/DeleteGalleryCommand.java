@@ -10,10 +10,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.Gallery;
 import com.koreait.mygallery.dto.Member;
 
+/**
+ * 갤러리를 갤러리에 포함된 댓글까지 함께 삭제합니다.
+ *
+ * @see GalleryController
+ * @author 박세환
+ */
 @Component
 public class DeleteGalleryCommand implements GalleryCommand{
 

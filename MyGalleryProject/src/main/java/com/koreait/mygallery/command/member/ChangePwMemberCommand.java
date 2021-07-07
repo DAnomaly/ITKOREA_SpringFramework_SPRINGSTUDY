@@ -13,7 +13,7 @@ import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * 비밀번호 찾기(변경) 커맨드
+ * 비밀번호 찾기 페이지에서 비밀번호 변경 작업을 수행합니다.
  * 
  * @see MemberController
  * @author 박세환

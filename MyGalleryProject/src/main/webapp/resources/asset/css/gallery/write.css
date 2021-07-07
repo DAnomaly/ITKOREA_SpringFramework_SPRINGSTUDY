@@ -1,1 +1,45 @@
 @charset "UTF-8";
+section {
+	margin: 0 auto;
+	margin-top: 30px;
+	box-sizing: border-box;
+	width: 680px;
+	background-color: #ffffff;
+	border: 2px solid #b3a19790;
+	border-radius: 5px;
+	padding: 10px;
+	color: #006583;
+	position: relative;
+}
+section label {
+	padding: 10px 5px;
+}
+section input[type="text"] {
+	margin-left: 10px;
+	width: 300px;
+	border: none;
+	border-bottom: 1px solid #006583;
+	font-size: 18px;
+}
+section input[type="file"] {
+	margin-left: 10px;
+}
+section textarea {
+	font-size: 18px;
+	width: 450px;
+	height: 280px;
+	border: 1px solid #006583;
+	border-radius: 0;
+}
+section input[value="작성"] {
+	position: absolute;
+	font-size: 18px;
+	background-color: #b3a197;
+	color: white;
+	padding: 5px 10px;
+	right: 10px;
+	bottom: 5px;
+}
+section input[value="작성"]:hover {
+	color: #ff6372;
+}

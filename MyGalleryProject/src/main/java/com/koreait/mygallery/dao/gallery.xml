@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM GALLERY
 		 WHERE GALLERY_NO = ${_parameter}
 	</select>
-
+	
 	<select id="selectGalleryComment" resultType="com.koreait.mygallery.dto.GalleryCom">
 		SELECT GALLERY_COM_NO AS GALLERYCOMNO
 		     , GALLERY_NO AS GALLERYNO
@@ -62,6 +62,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE GALLERY_NO = ${_parameter}
 		 ORDER BY POSTDATE
 	</select>
+	
+	<update id="updateGalleryHit">
+		UPDATE GALLERY
+		   SET HIT = HIT + 1
+		 WHERE GALLERY_NO = ${_parameter}
+	</update>
 	
 	<select id="selectOneGalleryComment" resultType="com.koreait.mygallery.dto.GalleryCom">
 		SELECT GALLERY_COM_NO AS GALLERYCOMNO

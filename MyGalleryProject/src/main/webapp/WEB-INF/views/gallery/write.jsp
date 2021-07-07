@@ -12,13 +12,14 @@
 	</c:if>
 	<script type="text/javascript" src="/mygallery/resources/asset/js/gallery/write.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/gallery/write.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
 	<section>
 		<form id="f" action="insert.do" method="post" enctype="multipart/form-data">
 			<label>
-				<span>제목</span><br>
+				<span>제목</span>
 				<input type="text" name="title" id="title"/><br>
 			</label>
 			<label>
@@ -26,7 +27,7 @@
 				<textarea name="content" id="content"></textarea><br>
 			</label>
 			<span>
-				<span>이미지</span><br>
+				<span>이미지</span>
 				<input type="file" name="image" id="image"/><br>
 			</span>
 			<input type="button" value="작성" id="f_btn"/>

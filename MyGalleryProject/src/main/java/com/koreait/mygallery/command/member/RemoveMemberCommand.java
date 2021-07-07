@@ -10,12 +10,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 
 /**
- * 회원 탈퇴 커맨드
+ * 회원 탈퇴 작업을 수행합니다.<br>
+ * session내의 loginMember의 아이디를 참고하여 회원의 status의 값을 -1로 변경합니다.
  * 
+ * @see MemberController
  * @author 박세환
  */
 @Component

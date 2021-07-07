@@ -15,7 +15,8 @@ import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * 회원 정보 수정 커맨드
+ * 요청한 회원정보 수정을 작업합니다.<br>
+ * 비밀번호가 없을 경우 비밀번호를 변경하지 않습니다.
  * 
  * @see MemberController
  * @author 박세환

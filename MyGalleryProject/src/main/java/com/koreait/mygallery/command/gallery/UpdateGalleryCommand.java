@@ -10,10 +10,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.Gallery;
 import com.koreait.mygallery.util.SecurityUtils;
 
+/**
+ * 요청한 Gallery를 수정합니다. 
+ * 
+ * @see GalleryController
+ * @author 박세환
+ */
 @Component
 public class UpdateGalleryCommand implements GalleryCommand {
 

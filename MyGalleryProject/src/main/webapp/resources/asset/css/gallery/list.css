@@ -32,6 +32,7 @@ section .right {
 	float: right;
 }
 section .right a {
+	font-size: 20px;
 	color: #b3a197;
 }
 section .right a:hover, section .left input[type="button"]:hover {

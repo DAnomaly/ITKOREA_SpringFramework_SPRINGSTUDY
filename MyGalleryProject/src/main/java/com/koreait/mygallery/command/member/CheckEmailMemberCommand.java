@@ -15,14 +15,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
  * 이메일 중복 여부를 판단하고<br>
- * 인증코드를 이메일에 전송하는 커맨드
+ * 인증코드를 이메일에 전송합니다.
  * 
+ * @see MemberController
  * @author 박세환
  */
 @Component

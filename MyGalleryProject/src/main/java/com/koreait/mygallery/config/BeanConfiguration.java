@@ -11,6 +11,12 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ * SqlSession, MultipartHttpServletRequest를 사용하기 위한 BeanConfiguration입니다.
+ * servlet-context.xml에서 자동으로 Bean등록됩니다.
+ * 
+ * @author 박세환
+ */
 @Configuration
 public class BeanConfiguration {
 

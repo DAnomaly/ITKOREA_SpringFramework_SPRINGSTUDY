@@ -6,6 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * MEMBER TABLE의 DTO
+ * 
+ * @author ITSC
+ */
 @NoArgsConstructor
 @Data
 @ToString

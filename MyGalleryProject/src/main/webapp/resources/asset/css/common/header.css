@@ -8,6 +8,9 @@
 * {
 	font-family: "BMJUA", serif;
 }
+input[type="password"] {
+	font-family: serif;
+}
 body {
 	background-color: #E8E4D9;
 }

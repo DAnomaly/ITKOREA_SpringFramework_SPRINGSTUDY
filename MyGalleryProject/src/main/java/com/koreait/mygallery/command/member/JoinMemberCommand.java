@@ -13,11 +13,9 @@ import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * 회원가입 절차를 실행할 때<br> 
- * DB Member테이블에 회원을 추가하는 클래스
+ * 회원가입을 통해 Member Table에 회원을 등록합니다. 
  * 
  * @see MemberController
- * @see MemberDAO
  * @author 박세환
  */
 @Component

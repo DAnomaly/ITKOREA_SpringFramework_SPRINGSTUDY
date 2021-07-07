@@ -8,11 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.BoardController;
 import com.koreait.mygallery.dao.BoardDAO;
 import com.koreait.mygallery.dto.Board;
 import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
+/**
+ * Board Table에 댓글을 추가합니다.
+ * 
+ * @see BoardController
+ * @author 박세환
+ */
 @Component
 public class InsertCommentBoardCommand implements BoardCommand{
 

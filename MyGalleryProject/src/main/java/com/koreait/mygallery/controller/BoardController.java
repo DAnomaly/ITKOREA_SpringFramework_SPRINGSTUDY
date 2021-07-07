@@ -18,6 +18,7 @@ import com.koreait.mygallery.command.board.SelectListBoardCommand;
 @RequestMapping("board")
 public class BoardController {
 
+	// field
 	private SqlSession sqlSession;
 	private SelectListBoardCommand selectListBoardCommand;
 	private InsertBoardCommand insertBoardCommand;

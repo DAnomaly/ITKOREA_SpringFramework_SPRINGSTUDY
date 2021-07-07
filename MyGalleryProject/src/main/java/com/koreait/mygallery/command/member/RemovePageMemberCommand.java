@@ -8,13 +8,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 
 /**
- * 회원 탈퇴 페이지 커맨드
+ * 회원 탈퇴 페이지에 필요한 데이터를 보내줍니다.
+ * <ul>
+ * 		<li>총 작성한 갤러리의 수 : g_count</li>
+ * 		<li>총 작성한 게시글의 수 : b_count</li>
+ * </ul>
  * 
- * @author ITSC
+ * @see MemberController
+ * @author 박세환
  */
 @Component
 public class RemovePageMemberCommand implements MemberCommand {

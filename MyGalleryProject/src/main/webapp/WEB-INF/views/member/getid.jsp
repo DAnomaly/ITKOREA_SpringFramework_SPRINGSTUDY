@@ -10,12 +10,13 @@
 	<script type="text/javascript" src="/mygallery/resources/asset/js/member/getid_notfound.js" charset="utf-8"></script>
 	</c:if>
 	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/member/getid.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
 	<section>
 		<div class="container">
-			<p>찾으시는 아이디는 <span>${findMember.id}</span>입니다.</p>	
+			<p>찾으시는 아이디는 <span class="id">${findMember.id}</span>입니다.</p>	
 			<input type="button" value="이전으로 가기" onclick="location.href='/mygallery/member/findView.do';"/>
 			<input type="button" value="로그인" onclick="location.href='/mygallery/member/loginView.do';"/>
 		</div>

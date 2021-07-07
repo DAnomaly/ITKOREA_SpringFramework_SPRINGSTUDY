@@ -14,6 +14,7 @@ public interface GalleryDAO {
 	public int insertGalleryComment(GalleryCom galleryCom);
 	public Gallery selectOneGallery(long no);
 	public List<GalleryCom> selectGalleryComment(long no);
+	public int updateGalleryHit(long no);
 	public GalleryCom selectOneGalleryComment(long no);
 	public int updateGallery(Gallery gallery);
 	public int deleteGallery(long no);

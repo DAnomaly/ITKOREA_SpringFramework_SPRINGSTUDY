@@ -9,11 +9,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.GalleryCom;
 import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
+/**
+ * 요청한 Gallery댓글을 저장합니다.
+ * 
+ * @see GalleryController
+ * @author 박세환
+ */
 @Component
 public class WriteCommentGalleryCommand implements GalleryCommand{
 

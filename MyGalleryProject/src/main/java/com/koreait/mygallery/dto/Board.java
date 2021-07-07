@@ -4,6 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+/**
+ * BOARD TABLE의 DTO
+ * 
+ * @author 박세환
+ */
 @NoArgsConstructor
 @Data
 @ToString

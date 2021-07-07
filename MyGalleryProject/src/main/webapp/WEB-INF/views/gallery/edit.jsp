@@ -9,6 +9,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/mygallery/resources/asset/js/gallery/edit.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/gallery/edit.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>

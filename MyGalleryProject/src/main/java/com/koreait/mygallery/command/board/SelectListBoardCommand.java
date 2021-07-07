@@ -10,11 +10,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.BoardController;
 import com.koreait.mygallery.dao.BoardDAO;
 import com.koreait.mygallery.dto.Board;
 import com.koreait.mygallery.dto.Page;
 import com.koreait.mygallery.util.PagingUtils;
 
+/**
+ * Board Table에서 데이터를 가져옵니다.<br>
+ * Paging처리하여 model에 저장합니다.
+ * 
+ * @see BoardController
+ * @author 박세환
+ */
 @Component
 public class SelectListBoardCommand implements BoardCommand {
 
@@ -38,7 +46,6 @@ public class SelectListBoardCommand implements BoardCommand {
 		searchMap.put("beginRecord", page.getBeginRecord());
 		searchMap.put("endRecord", page.getEndRecord());
 		List<Board> list = dao.selectListBoard(searchMap);
-		logger.info(list.toString());
 		// paging
 		String path;
 		if(searchMap.get("c") == null) {

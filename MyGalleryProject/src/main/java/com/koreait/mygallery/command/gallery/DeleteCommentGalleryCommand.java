@@ -9,9 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.GalleryController;
 import com.koreait.mygallery.dao.GalleryDAO;
 import com.koreait.mygallery.dto.GalleryCom;
 
+/**
+ * 갤러리의 댓글 하나를 삭제합니다.
+ *
+ * @see GalleryController
+ * @author 박세환
+ */
 @Component
 public class DeleteCommentGalleryCommand implements GalleryCommand{
 
@@ -38,7 +45,6 @@ public class DeleteCommentGalleryCommand implements GalleryCommand{
 		}
 		
 		// 댓글 삭제
-		// 갤러리 삭제
 		if(dao.deleteGalleryCommentByNo(galleryCom.getGalleryComNo()) != 0) {
 			sb.append("<script>");
 			sb.append("alert('정상적으로 삭제되었습니다.');");

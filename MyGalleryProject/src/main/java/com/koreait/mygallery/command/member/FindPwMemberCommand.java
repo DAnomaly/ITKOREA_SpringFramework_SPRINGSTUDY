@@ -16,10 +16,19 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
 import com.koreait.mygallery.dao.MemberDAO;
 import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
+/**
+ * 비밀번호 찾기 요청시<br>
+ * 요청을 통해 일치하는 계정을 못 찾았을 경우 : null을 반환할 수 있도록 합니다.(작업을 수행하지 않고 페이지로 이동합니다.)<br>
+ * 요청을 통해 일치하는 계정을 찾은 경우 :  이메일에 인증키를 전송합니다. (회원 정보를 model에 저장합니다.)
+ * 
+ * @see MemberController
+ * @author 박세환
+ */
 @Component
 public class FindPwMemberCommand implements MemberCommand{
 
@@ -32,9 +41,9 @@ public class FindPwMemberCommand implements MemberCommand{
 		Member member = (Member)model.asMap().get("member");
 		
 		Member findMember = dao.findMember(member);
-		model.addAttribute("findMember", findMember);
 		if(findMember == null)
 			return null;
+		model.addAttribute("findMember", findMember);
 
 		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
 		HttpSession session = request.getSession();

@@ -17,10 +17,11 @@ import com.koreait.mygallery.dto.Page;
 import com.koreait.mygallery.util.PagingUtils;
 
 /**
- * 갤러리 리스트 커맨드
+ * 해당 페이지에 알맞는 Gallery를 가져옵니다.<br>
+ * Paging처리하여 model에 저장합니다. 
  *  
  * @see GalleryController
- * @author ITSC
+ * @author 박세환
  */
 @Component
 public class SelectListGalleryCommand implements GalleryCommand{

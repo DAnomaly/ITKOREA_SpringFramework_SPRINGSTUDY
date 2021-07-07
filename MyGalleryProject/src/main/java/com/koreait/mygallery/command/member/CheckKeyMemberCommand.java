@@ -10,6 +10,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.koreait.mygallery.controller.MemberController;
+
+/**
+ * 인증키가 동일한지 확인합니다.
+ * 동일한 경우 JSON(result:true)를 반환할 수 있게 합니다.
+ * 
+ * @see MemberController
+ * @author 박세환
+ */
 @Component
 public class CheckKeyMemberCommand implements MemberCommand{
 

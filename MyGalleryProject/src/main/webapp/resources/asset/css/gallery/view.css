@@ -1,1 +1,76 @@
 @charset "UTF-8";
+section {
+	margin: 0 auto;
+	margin-top: 30px;
+	box-sizing: border-box;
+	width: 680px;
+	background-color: #ffffff;
+	border: 2px solid #b3a19790;
+	border-radius: 5px;
+	padding: 10px;
+	color: #006583;
+	position: relative;
+}
+.hidden {
+	display: none;
+}
+section h3 {
+	margin: 10px;
+	font-size: 18px;
+}
+section img {
+	display: block;
+	margin: 0 auto;
+	width: 650px;
+}
+section .content {
+	font-size: 18px;
+	box-sizing: border-box;
+	border: 1px solid #b3a19790;
+	padding: 8px;
+	margin: 5px;
+}
+section .id {
+	color: #000000;
+	font-size: 18px;
+}
+section .postdate {
+	font-size: 14px;
+	color: #00000090;
+}
+section .edit {
+	padding-left: 10px;
+}
+section .edit a {
+	color: #7cbac9;
+}
+section .edit a:hover {
+	color: #ff6372;
+}
+section dl {
+	padding: 5px;	
+	margin: 10px auto;
+	width: 580px;
+	border: 1px solid #b3a19790;
+	border-radius: 10px;
+	position: relative;
+}
+section dl pre {
+	margin: 8px 0;
+	width: 540px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+section dl input[type="button"] {
+	position: absolute;
+	font-size: 16px;
+	padding: 5px 10px;
+	right: 20px;
+	bottom: 8px;
+}
+section dl textarea {
+	width: 460px;
+	height: 40px;
+    overflow: auto;
+    white-space: pre-wrap;
+}

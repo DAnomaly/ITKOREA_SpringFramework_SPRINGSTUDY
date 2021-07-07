@@ -9,15 +9,17 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="/mygallery/resources/asset/js/board/list.js" charset="utf-8"></script>
 	<link rel="stylesheet" href="/mygallery/resources/asset/css/common/header.css">
+	<link rel="stylesheet" href="/mygallery/resources/asset/css/board/list.css">
 </head>
 <body>
 	<jsp:include page="/resources/asset/jsp/header.jsp"></jsp:include>
 	<section>
 		<c:if test="${not empty loginMember}">
-		<div>
+		<div class="insert_box">
+			<h3>새글 작성</h3>
 			<form id="insert_f" action="insert.do" method="post">
 				<dl>
-					<dt>${loginMember.id}</dt>
+					<dt><span class="id">${loginMember.id}</span></dt>
 					<dd>
 						<textarea id="insert_content" name="content"></textarea>
 						<input type="button" value="작성" id="insert_btn"/>
@@ -46,7 +48,7 @@
 				</c:if>
 				<c:forEach items="${list}" var="board">
 				<c:if test="${board.state == 0}">
-				<li class="depth_${board.depth}">
+				<li class="board_box depth_${board.depth}">
 					<dl>
 						<dt>
 							<span class="id">${board.id}</span>
@@ -66,7 +68,7 @@
 				<c:if test="${board.depth == 0}">
 				<li class="depth_1" id="insertcom_${board.boardNo}" style="display:none;">
 					<dl>
-						<dt>${loginMember.id}</dt>
+						<dt><span class="id">${loginMember.id}</span></dt>
 						<dd>
 							<form action="insertComment.do" method="post">
 								<input type="hidden" name="groupno" value="${board.boardNo}"/>

@@ -16,10 +16,11 @@ import com.koreait.mygallery.dto.Member;
 import com.koreait.mygallery.util.SecurityUtils;
 
 /**
- * 로그인 커맨드 클래스
+ * 로그인 작업을 수행합니다.<br>
+ * 일치하는 회원정보를 찾으면 Session에 loginMember를 저장하고, map에 result:true로 저장합니다.<br>
+ * 찾지 못하였을 경우 map에 result:false로 저장합니다.
  * 
  * @see MemberController
- * @see MemberDAO
  * @author 박세환
  */
 @Component

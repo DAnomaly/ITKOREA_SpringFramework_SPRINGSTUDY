@@ -1,1 +1,33 @@
 @charset "UTF-8";
+
+section {
+	margin-top: 30px;
+}
+section h3 {
+	color: #006583;
+	text-align: center;
+}
+section table {
+	margin: 5px auto;
+}
+section tr td:first-of-type {
+	text-align: center;
+	color: #006583;
+}
+section td {
+	padding: 5px 10px;
+}
+section tfoot input {
+	margin: 0 5px;
+	padding: 3px 8px;
+	font-size: 16px;
+}
+section tfoot input[type="button"] {
+	background-color: #ffffffbb;
+	padding: 5px 10px;
+	border-radius: 3px;
+	color: #7cbac9;
+}
+section input[type="button"]:hover {
+	color: #ff6372; 
+}
